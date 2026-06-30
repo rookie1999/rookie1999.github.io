@@ -1,6 +1,149 @@
 <!DOCTYPE html>
-<html>
-  <body>
-    <h1>Hello World！这是我为了求职准备的个人主页。</h1>
-  </body>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Guozhi Zhan</title>
+  <style>
+    :root{--bg:#0a0d0b;--panel:#0f1411;--fg:#d8fbe1;--muted:#7f9b88;--line:#1d2a22;--hi:#6fff9a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top,#132016 0,#0a0d0b 48%);color:var(--fg);font:15px/1.7 "Cascadia Mono","SFMono-Regular","Consolas","Liberation Mono",monospace}a{color:var(--hi);text-decoration:none}a:hover{text-decoration:underline}::selection{background:var(--hi);color:#08100a}.wrap{width:min(920px,92vw);margin:auto;padding:28px 0 64px}.term,.sec{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 0 0 1px rgba(111,255,154,.03) inset}.term{padding:18px 20px 16px}.bar{display:flex;gap:8px;margin-bottom:14px}.dot{width:10px;height:10px;border-radius:50%;background:#2a3}.dot:nth-child(2){background:#d9a441}.dot:nth-child(3){background:#c84d4d}h1,h2,h3,p,ul{margin:0}h1{font-size:clamp(30px,6vw,54px);line-height:1.05}h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--hi);margin-bottom:12px}h3{font-size:16px}.lead,.meta,.note{color:var(--muted)}.lead{margin-top:10px;max-width:64ch}.meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.sec{padding:18px 20px}.list{display:grid;gap:14px}.item{padding-top:14px;border-top:1px dashed var(--line)}.item:first-child{padding-top:0;border-top:0}.top{display:flex;justify-content:space-between;gap:14px;align-items:baseline}.time{color:var(--muted);white-space:nowrap}.tags{color:var(--muted);font-size:13px}.pub{display:flex;justify-content:space-between;gap:14px;border-top:1px dashed var(--line);padding:12px 0}.pub:first-child{border-top:0;padding-top:0}.cmd{color:var(--hi)}.foot{margin-top:18px;color:var(--muted);font-size:13px}@media (max-width:760px){.grid{grid-template-columns:1fr}.top,.pub{flex-direction:column}.time{white-space:normal}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="term">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <p class="cmd">$ whoami</p>
+      <h1>Guozhi Zhan / 詹国志</h1>
+      <p class="lead">Master's student at Tongji University working on imitation learning, robot data synthesis, VLA, and dynamic grasping. I build embodied AI systems that move from simulation to real-world deployment.</p>
+      <div class="meta">
+        <span>mail: <a href="mailto:benson_zhan@tongji.edu.cn">benson_zhan@tongji.edu.cn</a></span>
+        <span>phone: <a href="tel:+8618117554005">+86 18117554005</a></span>
+        <span>site: <a href="https://rookie1999.github.io/">rookie1999.github.io</a></span>
+      </div>
+    </header>
+
+    <main class="grid">
+      <section class="sec">
+        <h2>About Me</h2>
+        <div class="list">
+          <div class="item">
+            <h3>Research Focus</h3>
+            <p>Imitation learning, multi-speed dynamic grasping, motion-aware control, experience-tree reasoning, robot data synthesis, and Vision-Language-Action systems.</p>
+          </div>
+          <div class="item">
+            <h3>Education</h3>
+            <p><strong>Tongji University</strong>, M.S. in Electronic Information, School of Computer Science and Technology, 2024.09 - 2027.03</p>
+            <p class="note">Previous study at Ostfalia University of Applied Sciences and East China University of Science and Technology.</p>
+          </div>
+          <div class="item">
+            <h3>Highlights</h3>
+            <p>Shanghai Scholarship, 3x Special Scholarship, DAAD Scholarship, Outstanding Graduate of ECUST.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Internships</h2>
+        <div class="list">
+          <article class="item">
+            <div class="top">
+              <h3>Xiaomi</h3>
+              <span class="time">2026.05 - 2026.08</span>
+            </div>
+            <p class="tags">Embodied Intelligence Algorithm Intern</p>
+            <p>Designed and trained VLA-based manipulation pipelines for language-conditioned multi-object grasping and online RL post-training for long-horizon dressing tasks.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>Luming Robotics</h3>
+              <span class="time">2026.01 - 2026.03</span>
+            </div>
+            <p class="tags">Embodied Intelligence Algorithm Intern</p>
+            <p>Worked on FastUMI data collection and real-robot deployment, training and tuning ACT, Diffusion Policy, and Pi0-style policies with high-frequency closed-loop execution.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>Yonyou Software</h3>
+              <span class="time">2021.08 - 2023.07</span>
+            </div>
+            <p class="tags">Backend R&amp;D Engineer</p>
+            <p>Migrated ERP core logic from stored procedures to C# services and improved performance, stability, and engineering discipline in large-scale enterprise systems.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Research Projects</h2>
+        <div class="list">
+          <article class="item">
+            <div class="top">
+              <h3>SpeedACT</h3>
+              <span class="time">2026.01 - 2026.03</span>
+            </div>
+            <p>Proposed a kinematic-guided imitation learning framework for multi-speed dynamic grasping with expert routing and asymmetric spatiotemporal regularization.</p>
+            <p class="note">Result: 100% grasp success on unseen continuous-speed intervals and controlled variable-speed scenarios.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>MA-ACT</h3>
+              <span class="time">2025.03 - 2025.10</span>
+            </div>
+            <p>Introduced motion-aware representations and motion-vision fusion to improve robustness of dynamic grasping under distribution shifts.</p>
+            <p class="note">Result: 100% closed-loop success in controlled variable-speed settings and 91.7% success under cluttered backgrounds.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>ADCT</h3>
+              <span class="time">2025.05 - 2025.10</span>
+            </div>
+            <p>Built an ACT-based multi-target grasping framework using experience trees and dynamic detection features to reduce accumulated error in long-horizon tasks.</p>
+            <p class="note">Result: 96% success in single-scene multi-target grasping and 91% across multiple scenes.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>VLA Multi-Object Grasping</h3>
+              <span class="time">2026.05 - 2026.08</span>
+            </div>
+            <p>Built a full data pipeline from grasp segment mining to object box annotation and diversified language instruction augmentation for open-vocabulary grasping.</p>
+          </article>
+          <article class="item">
+            <div class="top">
+              <h3>Online RL Post-Training for Dressing</h3>
+              <span class="time">2026.05 - 2026.08</span>
+            </div>
+            <p>Used critic-guided action editing to preserve VLA priors while improving long-horizon recovery behavior in online interaction.</p>
+            <p class="note">Result: task success improved from 35% to 78%.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="sec">
+        <h2>Publications</h2>
+        <div class="pub">
+          <div>
+            <h3>SpeedACT: Kinematic-Guided Imitation Learning for Multi-Speed Dynamic Grasping</h3>
+            <p class="tags">First author · RAL revise / under submission</p>
+          </div>
+          <span class="time">2026</span>
+        </div>
+        <div class="pub">
+          <div>
+            <h3>Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping</h3>
+            <p class="tags">First author · under submission</p>
+          </div>
+          <span class="time">2025</span>
+        </div>
+        <div class="pub">
+          <div>
+            <h3>Action and Detection Chunking with Transformers based on Experience Tree</h3>
+            <p class="tags">Second author · RAL</p>
+          </div>
+          <span class="time">2025</span>
+        </div>
+      </section>
+    </main>
+
+    <p class="foot">$ status: available for research collaboration, internships, and full-time opportunities in embodied AI.</p>
+  </div>
+</body>
 </html>

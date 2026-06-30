@@ -5,145 +5,224 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Guozhi Zhan</title>
   <style>
-    :root{--bg:#0a0d0b;--panel:#0f1411;--fg:#d8fbe1;--muted:#7f9b88;--line:#1d2a22;--hi:#6fff9a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top,#132016 0,#0a0d0b 48%);color:var(--fg);font:15px/1.7 "Cascadia Mono","SFMono-Regular","Consolas","Liberation Mono",monospace}a{color:var(--hi);text-decoration:none}a:hover{text-decoration:underline}::selection{background:var(--hi);color:#08100a}.wrap{width:min(920px,92vw);margin:auto;padding:28px 0 64px}.term,.sec{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:0 0 0 1px rgba(111,255,154,.03) inset}.term{padding:18px 20px 16px}.bar{display:flex;gap:8px;margin-bottom:14px}.dot{width:10px;height:10px;border-radius:50%;background:#2a3}.dot:nth-child(2){background:#d9a441}.dot:nth-child(3){background:#c84d4d}h1,h2,h3,p,ul{margin:0}h1{font-size:clamp(30px,6vw,54px);line-height:1.05}h2{font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--hi);margin-bottom:12px}h3{font-size:16px}.lead,.meta,.note{color:var(--muted)}.lead{margin-top:10px;max-width:64ch}.meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:14px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;margin-top:18px}.sec{padding:18px 20px}.list{display:grid;gap:14px}.item{padding-top:14px;border-top:1px dashed var(--line)}.item:first-child{padding-top:0;border-top:0}.top{display:flex;justify-content:space-between;gap:14px;align-items:baseline}.time{color:var(--muted);white-space:nowrap}.tags{color:var(--muted);font-size:13px}.pub{display:flex;justify-content:space-between;gap:14px;border-top:1px dashed var(--line);padding:12px 0}.pub:first-child{border-top:0;padding-top:0}.cmd{color:var(--hi)}.foot{margin-top:18px;color:var(--muted);font-size:13px}@media (max-width:760px){.grid{grid-template-columns:1fr}.top,.pub{flex-direction:column}.time{white-space:normal}}
+    :root{--bg:#070b08;--bg2:#101813;--panel:rgba(9,14,11,.9);--fg:#ecf7ef;--muted:#91a696;--line:#1c2b22;--hi:#7dffac;--soft:#0d1711}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at top,rgba(125,255,172,.12),transparent 26%),linear-gradient(180deg,var(--bg2),var(--bg) 28%);color:var(--fg);font:16px/1.8 "Cascadia Mono","JetBrains Mono","SFMono-Regular","Consolas",monospace}a{color:var(--hi);text-decoration:none}a:hover{text-decoration:underline}button{font:inherit}::selection{background:var(--hi);color:#08100b}.wrap{width:min(980px,92vw);margin:auto;padding:30px 0 76px}.hero,.sec{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 0 0 1px rgba(125,255,172,.03) inset}.hero{padding:22px 24px 26px}.bar{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:18px}.dots{display:flex;gap:8px}.dot{width:10px;height:10px;border-radius:50%;background:#37cc72}.dot:nth-child(2){background:#ecbc50}.dot:nth-child(3){background:#dd6262}.lang{display:flex;gap:8px}.lang button{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#0b130e;color:var(--muted);cursor:pointer}.lang button.active{background:var(--hi);border-color:var(--hi);color:#07100a}.cmd,.sub,.note,.meta{color:var(--muted)}.cmd{margin:0 0 10px}.title{margin:0;font-size:clamp(38px,8vw,72px);line-height:1}.subtitle{margin:14px 0 0;max-width:64ch}.meta{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px}.nav{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}.nav a{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft)}main{display:grid;gap:24px;margin-top:24px}.sec{padding:26px 24px}.sec h2{margin:0 0 18px;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--hi)}.about{display:grid;gap:14px}.about p{margin:0}.timeline{position:relative;display:grid;gap:18px}.timeline:before{content:"";position:absolute;left:7px;top:4px;bottom:4px;width:1px;background:linear-gradient(var(--hi),transparent)}.item{position:relative;padding-left:28px}.item:before{content:"";position:absolute;left:0;top:.72em;width:14px;height:14px;border-radius:50%;background:#0b140e;border:1px solid var(--hi);box-shadow:0 0 0 3px rgba(125,255,172,.08)}.head{display:flex;justify-content:space-between;gap:18px;align-items:baseline}.head h3{margin:0;font-size:19px}.time{white-space:nowrap;color:var(--muted);font-size:14px}.item p{margin:0 0 8px}.item p:last-child{margin-bottom:0}.pub{padding:16px 0;border-top:1px dashed var(--line)}.pub:first-child{padding-top:0;border-top:0}.pub h3{margin:0 0 6px;font-size:18px}.foot{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}@media (max-width:720px){.wrap{padding-top:18px}.hero,.sec{padding:18px}.bar,.head{flex-direction:column;align-items:flex-start}.time{white-space:normal}.title{font-size:42px}.subtitle{font-size:15px}}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <header class="term">
-      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
-      <p class="cmd">$ whoami</p>
-      <h1>Guozhi Zhan / 詹国志</h1>
-      <p class="lead">Master's student at Tongji University working on imitation learning, robot data synthesis, VLA, and dynamic grasping. I build embodied AI systems that move from simulation to real-world deployment.</p>
-      <div class="meta">
-        <span>mail: <a href="mailto:benson_zhan@tongji.edu.cn">benson_zhan@tongji.edu.cn</a></span>
-        <span>phone: <a href="tel:+8618117554005">+86 18117554005</a></span>
-        <span>site: <a href="https://rookie1999.github.io/">rookie1999.github.io</a></span>
+    <header class="hero">
+      <div class="bar">
+        <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="lang">
+          <button class="active" type="button" data-lang="zh" id="lang-zh">ZH</button>
+          <button type="button" data-lang="en" id="lang-en">EN</button>
+        </div>
       </div>
+      <p class="cmd">$ ./profile --open</p>
+      <h1 class="title"><span id="name-zh"></span><span id="name-en"> / Guozhi Zhan</span></h1>
+      <p class="subtitle" id="subtitle"></p>
+      <div class="meta">
+        <span>Mail: <a href="mailto:benson_zhan@tongji.edu.cn">benson_zhan@tongji.edu.cn</a></span>
+        <span>Phone: <a href="tel:+8618117554005">+86 18117554005</a></span>
+        <span>Homepage: <a href="https://rookie1999.github.io/">rookie1999.github.io</a></span>
+      </div>
+      <nav class="nav">
+        <a href="#about" id="nav-about">About</a>
+        <a href="#projects" id="nav-projects">Projects</a>
+        <a href="#internships" id="nav-internships">Internships</a>
+        <a href="#publications" id="nav-publications">Publications</a>
+      </nav>
     </header>
 
-    <main class="grid">
-      <section class="sec">
-        <h2>About Me</h2>
-        <div class="list">
-          <div class="item">
-            <h3>Research Focus</h3>
-            <p>Imitation learning, multi-speed dynamic grasping, motion-aware control, experience-tree reasoning, robot data synthesis, and Vision-Language-Action systems.</p>
-          </div>
-          <div class="item">
-            <h3>Education</h3>
-            <p><strong>Tongji University</strong>, M.S. in Electronic Information, School of Computer Science and Technology, 2024.09 - 2027.03</p>
-            <p class="note">Previous study at Ostfalia University of Applied Sciences and East China University of Science and Technology.</p>
-          </div>
-          <div class="item">
-            <h3>Highlights</h3>
-            <p>Shanghai Scholarship, 3x Special Scholarship, DAAD Scholarship, Outstanding Graduate of ECUST.</p>
-          </div>
+    <main>
+      <section class="sec" id="about">
+        <h2 id="about-title">About Me</h2>
+        <div class="about">
+          <p id="about-1"></p>
+          <p id="about-2"></p>
+          <p class="note" id="about-3"></p>
         </div>
       </section>
 
-      <section class="sec">
-        <h2>Internships</h2>
-        <div class="list">
+      <section class="sec" id="projects">
+        <h2 id="projects-title">Research Projects</h2>
+        <div class="timeline">
           <article class="item">
-            <div class="top">
-              <h3>Xiaomi</h3>
-              <span class="time">2026.05 - 2026.08</span>
-            </div>
-            <p class="tags">Embodied Intelligence Algorithm Intern</p>
-            <p>Designed and trained VLA-based manipulation pipelines for language-conditioned multi-object grasping and online RL post-training for long-horizon dressing tasks.</p>
+            <div class="head"><h3>SpeedACT</h3><span class="time">2026.01 - 2026.03</span></div>
+            <p class="sub" id="p1s"></p><p id="p1d"></p><p class="note" id="p1r"></p>
           </article>
           <article class="item">
-            <div class="top">
-              <h3>Luming Robotics</h3>
-              <span class="time">2026.01 - 2026.03</span>
-            </div>
-            <p class="tags">Embodied Intelligence Algorithm Intern</p>
-            <p>Worked on FastUMI data collection and real-robot deployment, training and tuning ACT, Diffusion Policy, and Pi0-style policies with high-frequency closed-loop execution.</p>
+            <div class="head"><h3>MA-ACT</h3><span class="time">2025.03 - 2025.10</span></div>
+            <p class="sub" id="p2s"></p><p id="p2d"></p><p class="note" id="p2r"></p>
           </article>
           <article class="item">
-            <div class="top">
-              <h3>Yonyou Software</h3>
-              <span class="time">2021.08 - 2023.07</span>
-            </div>
-            <p class="tags">Backend R&amp;D Engineer</p>
-            <p>Migrated ERP core logic from stored procedures to C# services and improved performance, stability, and engineering discipline in large-scale enterprise systems.</p>
+            <div class="head"><h3>ADCT</h3><span class="time">2025.05 - 2025.10</span></div>
+            <p class="sub" id="p3s"></p><p id="p3d"></p><p class="note" id="p3r"></p>
+          </article>
+          <article class="item">
+            <div class="head"><h3 id="p4t">VLA Multi-Object Grasping</h3><span class="time">2026.05 - 2026.08</span></div>
+            <p id="p4d"></p>
+          </article>
+          <article class="item">
+            <div class="head"><h3 id="p5t">Online RL Post-Training</h3><span class="time">2026.05 - 2026.08</span></div>
+            <p id="p5d"></p><p class="note" id="p5r"></p>
           </article>
         </div>
       </section>
 
-      <section class="sec">
-        <h2>Research Projects</h2>
-        <div class="list">
+      <section class="sec" id="internships">
+        <h2 id="internships-title">Internships</h2>
+        <div class="timeline">
           <article class="item">
-            <div class="top">
-              <h3>SpeedACT</h3>
-              <span class="time">2026.01 - 2026.03</span>
-            </div>
-            <p>Proposed a kinematic-guided imitation learning framework for multi-speed dynamic grasping with expert routing and asymmetric spatiotemporal regularization.</p>
-            <p class="note">Result: 100% grasp success on unseen continuous-speed intervals and controlled variable-speed scenarios.</p>
+            <div class="head"><h3 id="i1t">Xiaomi</h3><span class="time">2026.05 - 2026.08</span></div>
+            <p class="sub" id="i1r"></p><p id="i1d"></p>
           </article>
           <article class="item">
-            <div class="top">
-              <h3>MA-ACT</h3>
-              <span class="time">2025.03 - 2025.10</span>
-            </div>
-            <p>Introduced motion-aware representations and motion-vision fusion to improve robustness of dynamic grasping under distribution shifts.</p>
-            <p class="note">Result: 100% closed-loop success in controlled variable-speed settings and 91.7% success under cluttered backgrounds.</p>
+            <div class="head"><h3 id="i2t">Luming Robotics</h3><span class="time">2026.01 - 2026.03</span></div>
+            <p class="sub" id="i2r"></p><p id="i2d"></p>
           </article>
           <article class="item">
-            <div class="top">
-              <h3>ADCT</h3>
-              <span class="time">2025.05 - 2025.10</span>
-            </div>
-            <p>Built an ACT-based multi-target grasping framework using experience trees and dynamic detection features to reduce accumulated error in long-horizon tasks.</p>
-            <p class="note">Result: 96% success in single-scene multi-target grasping and 91% across multiple scenes.</p>
-          </article>
-          <article class="item">
-            <div class="top">
-              <h3>VLA Multi-Object Grasping</h3>
-              <span class="time">2026.05 - 2026.08</span>
-            </div>
-            <p>Built a full data pipeline from grasp segment mining to object box annotation and diversified language instruction augmentation for open-vocabulary grasping.</p>
-          </article>
-          <article class="item">
-            <div class="top">
-              <h3>Online RL Post-Training for Dressing</h3>
-              <span class="time">2026.05 - 2026.08</span>
-            </div>
-            <p>Used critic-guided action editing to preserve VLA priors while improving long-horizon recovery behavior in online interaction.</p>
-            <p class="note">Result: task success improved from 35% to 78%.</p>
+            <div class="head"><h3 id="i3t">Yonyou Software</h3><span class="time">2021.08 - 2023.07</span></div>
+            <p class="sub" id="i3r"></p><p id="i3d"></p>
           </article>
         </div>
       </section>
 
-      <section class="sec">
-        <h2>Publications</h2>
+      <section class="sec" id="publications">
+        <h2 id="publications-title">Publications</h2>
         <div class="pub">
-          <div>
-            <h3>SpeedACT: Kinematic-Guided Imitation Learning for Multi-Speed Dynamic Grasping</h3>
-            <p class="tags">First author · RAL revise / under submission</p>
-          </div>
-          <span class="time">2026</span>
+          <h3>SpeedACT: Kinematic-Guided Imitation Learning for Multi-Speed Dynamic Grasping</h3>
+          <p class="note" id="pub1"></p>
         </div>
         <div class="pub">
-          <div>
-            <h3>Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping</h3>
-            <p class="tags">First author · under submission</p>
-          </div>
-          <span class="time">2025</span>
+          <h3>Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping</h3>
+          <p class="note" id="pub2"></p>
         </div>
         <div class="pub">
-          <div>
-            <h3>Action and Detection Chunking with Transformers based on Experience Tree</h3>
-            <p class="tags">Second author · RAL</p>
-          </div>
-          <span class="time">2025</span>
+          <h3>Action and Detection Chunking with Transformers based on Experience Tree</h3>
+          <p class="note" id="pub3"></p>
         </div>
       </section>
     </main>
 
-    <p class="foot">$ status: available for research collaboration, internships, and full-time opportunities in embodied AI.</p>
+    <p class="foot" id="foot"></p>
   </div>
+
+  <script>
+    const copy = {
+      zh: {
+        title: "\u8a79\u56fd\u5fd7",
+        subtitle: "\u540c\u6d4e\u5927\u5b66\u7855\u58eb\u7814\u7a76\u751f\uff0c\u7814\u7a76\u65b9\u5411\u805a\u7126\u6a21\u4eff\u5b66\u4e60\u3001\u673a\u5668\u4eba\u6570\u636e\u5408\u6210\u3001Vision-Language-Action \u4ee5\u53ca\u52a8\u6001\u6293\u53d6\u3002\u5e0c\u671b\u628a\u53ef\u89e3\u91ca\u3001\u53ef\u6cdb\u5316\u3001\u53ef\u90e8\u7f72\u7684 embodied AI \u7cfb\u7edf\u771f\u6b63\u843d\u5230\u771f\u5b9e\u673a\u5668\u4eba\u4e0a\u3002",
+        navAbout: "\u5173\u4e8e\u6211",
+        navProjects: "\u7814\u7a76\u9879\u76ee",
+        navInternships: "\u5b9e\u4e60\u7ecf\u5386",
+        navPublications: "\u8bba\u6587\u53d1\u8868",
+        aboutTitle: "About Me",
+        projectsTitle: "Research Projects",
+        internshipsTitle: "Internships",
+        publicationsTitle: "Publications",
+        about1: "\u76ee\u524d\u5c31\u8bfb\u4e8e\u540c\u6d4e\u5927\u5b66\u8ba1\u7b97\u673a\u79d1\u5b66\u4e0e\u6280\u672f\u5b66\u9662\u7535\u5b50\u4fe1\u606f\u4e13\u4e1a\u7855\u58eb\uff0c\u9884\u8ba1 2027 \u5e74 3 \u6708\u6bd5\u4e1a\u3002\u672c\u79d1\u9636\u6bb5\u5148\u540e\u5728\u5415\u8d1d\u514b\u5e94\u7528\u6280\u672f\u5927\u5b66\u4e0e\u534e\u4e1c\u7406\u5de5\u5927\u5b66\u5b8c\u6210\u5b66\u4e60\u3002",
+        about2: "\u7814\u7a76\u5174\u8da3\u4e3b\u8981\u5305\u62ec\uff1a\u6a21\u4eff\u5b66\u4e60\u3001\u52a8\u6001\u6293\u53d6\u3001\u591a\u76ee\u6807\u64cd\u4f5c\u3001\u673a\u5668\u4eba\u6570\u636e\u5408\u6210\u3001VLA \u4e0e\u5728\u7ebf\u540e\u8bad\u7ec3\u3002\u6211\u5c24\u5176\u5173\u6ce8\u4ece\u4eff\u771f\u5230\u771f\u673a\u7684\u8fc1\u79fb\uff0c\u4ee5\u53ca\u957f\u65f6\u7a0b\u4efb\u52a1\u4e2d\u7684\u9c81\u68d2\u63a7\u5236\u95ee\u9898\u3002",
+        about3: "\u5956\u9879\uff1a\u4e0a\u6d77\u5e02\u5956\u5b66\u91d1\u3001\u7279\u7b49\u5956\u5b66\u91d1 3 \u6b21\u3001DAAD \u5956\u5b66\u91d1\u3001\u534e\u4e1c\u7406\u5de5\u5927\u5b66\u4f18\u79c0\u6bd5\u4e1a\u751f\u3002",
+        p1s: "\u57fa\u4e8e\u8fd0\u52a8\u5b66\u5f15\u5bfc\u7684\u591a\u901f\u5ea6\u52a8\u6001\u6293\u53d6\u6a21\u4eff\u5b66\u4e60",
+        p1d: "\u63d0\u51fa\u901f\u5ea6\u81ea\u9002\u5e94\u89c6\u89c9\u52a8\u4f5c\u751f\u6210\u6846\u67b6\uff0c\u5f15\u5165\u8fd0\u52a8\u5b66\u5f15\u5bfc\u7684\u4e13\u5bb6\u8def\u7531\u673a\u5236\u4e0e\u975e\u5bf9\u79f0\u65f6\u7a7a\u6b63\u5219\u5316\u7b56\u7565\u3002",
+        p1r: "\u7ed3\u679c\uff1a\u5728\u672a\u89c1\u8fde\u7eed\u901f\u5ea6\u533a\u95f4\u4e0e\u53d7\u63a7\u53d8\u901f\u573a\u666f\u4e0b\u5b9e\u73b0 100% \u6293\u53d6\u6210\u529f\u7387\u3002",
+        p2s: "\u9762\u5411\u52a8\u6001\u6293\u53d6\u7684\u8fd0\u52a8\u611f\u77e5\u6a21\u4eff\u5b66\u4e60\u6846\u67b6",
+        p2d: "\u5728 ACT \u6846\u67b6\u4e2d\u5f15\u5165\u7269\u4f53\u4e2d\u5fc3\u8fd0\u52a8\u6d41\u4e0e\u8fd0\u52a8-\u89c6\u89c9\u7279\u5f81\u878d\u5408\u673a\u5236\uff0c\u589e\u5f3a\u6a21\u578b\u9c81\u68d2\u6027\u4e0e\u6cdb\u5316\u80fd\u529b\u3002",
+        p2r: "\u7ed3\u679c\uff1a\u53d7\u63a7\u53d8\u901f\u573a\u666f\u95ed\u73af\u6293\u53d6\u6210\u529f\u7387 100%\uff0c\u6742\u4e71\u80cc\u666f\u4e0b\u4fdd\u6301 91.7% \u6210\u529f\u7387\u3002",
+        p3s: "\u57fa\u4e8e\u7ecf\u9a8c\u6811\u7684\u591a\u76ee\u6807\u5206\u7c7b\u4e0e\u6293\u53d6",
+        p3d: "\u4f7f\u7528\u7ecf\u9a8c\u6811\u63d0\u53d6\u4e13\u5bb6\u6f14\u793a\u4e2d\u7684\u72b6\u6001-\u9700\u6c42\u5173\u7cfb\uff0c\u7ed3\u5408\u52a8\u6001\u68c0\u6d4b\u7279\u5f81\u4e0e\u6b65\u957f\u8c03\u6574\u673a\u5236\u3002",
+        p3r: "\u7ed3\u679c\uff1a\u5355\u573a\u666f\u591a\u76ee\u6807\u6293\u53d6\u6210\u529f\u7387 96%\uff0c\u591a\u573a\u666f\u4efb\u52a1\u6210\u529f\u7387 91%\u3002",
+        p4t: "VLA \u591a\u7269\u4f53\u8bed\u8a00\u6761\u4ef6\u6293\u53d6",
+        p4d: "\u6784\u5efa\u6293\u53d6\u7247\u6bb5\u63d0\u53d6\u3001\u76ee\u6807\u6846\u6807\u6ce8\u548c\u8bed\u8a00\u6307\u4ee4\u589e\u5f3a\u7684\u5b8c\u6574\u6570\u636e\u6d41\u6c34\u7ebf\u3002",
+        p5t: "\u7a7f\u624e\u5e26\u4efb\u52a1\u5728\u7ebf RL \u540e\u8bad\u7ec3",
+        p5d: "\u8bbe\u8ba1 critic \u5f15\u5bfc\u7684\u5c40\u90e8\u52a8\u4f5c\u7f16\u8f91\u7b56\u7565\uff0c\u5728\u4fdd\u7559 VLA \u5148\u9a8c\u7684\u524d\u63d0\u4e0b\u63d0\u5347\u957f\u65f6\u7a0b\u4efb\u52a1\u80fd\u529b\u3002",
+        p5r: "\u7ed3\u679c\uff1a\u4efb\u52a1\u6210\u529f\u7387\u4ece 35% \u63d0\u5347\u81f3 78%\u3002",
+        i1t: "\u5c0f\u7c73",
+        i2t: "\u9e7f\u660e\u673a\u5668\u4eba",
+        i3t: "\u7528\u53cb\u8f6f\u4ef6\uff08\u4e2d\u56fd\uff09",
+        roleAi: "\u5177\u8eab\u667a\u80fd\u7b97\u6cd5\u5b9e\u4e60\u751f",
+        roleBe: "\u540e\u7aef\u7814\u53d1\u5de5\u7a0b\u5e08",
+        i1d: "\u56f4\u7ed5 VLA \u4e0e\u5f3a\u5316\u5b66\u4e60\u540e\u8bad\u7ec3\u5f00\u5c55\u5177\u8eab\u64cd\u4f5c\u7b97\u6cd5\u7814\u53d1\uff0c\u8d1f\u8d23\u591a\u7269\u4f53\u8bed\u8a00\u6761\u4ef6\u6293\u53d6\u4e0e\u5728\u7ebf RL \u7a7f\u624e\u5e26\u4efb\u52a1\u3002",
+        i2d: "\u53c2\u4e0e FastUMI \u6570\u636e\u91c7\u96c6\u7cfb\u7edf\u8fed\u4ee3\u4e0e\u771f\u673a\u90e8\u7f72\uff0c\u8bad\u7ec3\u548c\u5fae\u8c03 ACT\u3001Diffusion Policy\u3001Pi0 \u7b49\u6a21\u578b\u3002",
+        i3d: "\u53c2\u4e0e\u5927\u578b ERP \u6838\u5fc3\u6a21\u5757\u5f00\u53d1\u4e0e\u7ef4\u62a4\uff0c\u4e3b\u5bfc\u90e8\u5206\u5b58\u50a8\u8fc7\u7a0b\u5411 C# \u670d\u52a1\u8fc1\u79fb\u3002",
+        pub1: "\u7b2c\u4e00\u4f5c\u8005\uff0cRAL revise / \u5728\u6295",
+        pub2: "\u7b2c\u4e00\u4f5c\u8005\uff0c\u5728\u6295",
+        pub3: "\u7b2c\u4e8c\u4f5c\u8005\uff0cRAL",
+        foot: "$ status: \u53ef\u7528\u4e8e\u6c42\u804c\u5c55\u793a\uff0c\u4e5f\u9002\u5408\u540e\u7eed\u8865\u5145 CV / Scholar / GitHub \u94fe\u63a5\u3002"
+      },
+      en: {
+        title: "Guozhi Zhan",
+        subtitle: "Master's student at Tongji University working on imitation learning, robot data synthesis, Vision-Language-Action systems, and dynamic grasping, with a focus on deployable embodied AI.",
+        navAbout: "About",
+        navProjects: "Projects",
+        navInternships: "Internships",
+        navPublications: "Publications",
+        aboutTitle: "About Me",
+        projectsTitle: "Research Projects",
+        internshipsTitle: "Internships",
+        publicationsTitle: "Publications",
+        about1: "I am currently pursuing an M.S. in Electronic Information at the School of Computer Science and Technology, Tongji University, expected to graduate in March 2027. I previously studied at Ostfalia University of Applied Sciences and East China University of Science and Technology.",
+        about2: "My interests include imitation learning, dynamic grasping, multi-object manipulation, robot data synthesis, VLA, and online post-training. I care especially about sim-to-real transfer and robust control in long-horizon tasks.",
+        about3: "Awards: Shanghai Scholarship, three Special Scholarships, DAAD Scholarship, and Outstanding Graduate of ECUST.",
+        p1s: "Kinematic-guided imitation learning for multi-speed dynamic grasping",
+        p1d: "Proposed a speed-adaptive visual action generation framework with kinematic-guided expert routing and asymmetric spatiotemporal regularization.",
+        p1r: "Result: achieved 100% grasp success on unseen continuous-speed intervals and controlled variable-speed settings.",
+        p2s: "Motion-aware imitation learning for robust dynamic grasping",
+        p2d: "Extended ACT with object-centric motion flow and motion-vision fusion to improve robustness under dynamic environments and cluttered backgrounds.",
+        p2r: "Result: 100% closed-loop success in controlled variable-speed settings and 91.7% success under clutter.",
+        p3s: "Experience-tree based multi-target classification and grasping",
+        p3d: "Used experience trees to extract state-demand relations from demonstrations and combined them with dynamic detection features and adaptive step control.",
+        p3r: "Result: 96% success in single-scene multi-target grasping and 91% across multiple scenes.",
+        p4t: "VLA Multi-Object Language-Conditioned Grasping",
+        p4d: "Built a complete data pipeline covering grasp segment mining, bounding-box annotation, and instruction augmentation.",
+        p5t: "Online RL Post-Training for Dressing Tasks",
+        p5d: "Designed critic-guided local action editing to improve long-horizon task capability while preserving VLA priors.",
+        p5r: "Result: improved task success from 35% to 78%.",
+        i1t: "Xiaomi",
+        i2t: "Luming Robotics",
+        i3t: "Yonyou Software",
+        roleAi: "Embodied Intelligence Algorithm Intern",
+        roleBe: "Backend R&D Engineer",
+        i1d: "Worked on embodied manipulation algorithms around VLA and RL post-training, including language-conditioned multi-object grasping and online RL for dressing tasks.",
+        i2d: "Contributed to FastUMI data collection and real-robot deployment, and trained ACT, Diffusion Policy, and Pi0-style policies.",
+        i3d: "Worked on core ERP modules and led parts of the migration from stored procedures to C# services.",
+        pub1: "First author, RAL revise / under submission",
+        pub2: "First author, under submission",
+        pub3: "Second author, RAL",
+        foot: "$ status: ready for job applications and easy to extend with CV / Scholar / GitHub links."
+      }
+    };
+
+    const map = {
+      "name-zh": "title", subtitle: "subtitle", "nav-about": "navAbout", "nav-projects": "navProjects",
+      "nav-internships": "navInternships", "nav-publications": "navPublications", "about-title": "aboutTitle",
+      "projects-title": "projectsTitle", "internships-title": "internshipsTitle", "publications-title": "publicationsTitle",
+      "about-1": "about1", "about-2": "about2", "about-3": "about3", p1s: "p1s", p1d: "p1d", p1r: "p1r",
+      p2s: "p2s", p2d: "p2d", p2r: "p2r", p3s: "p3s", p3d: "p3d", p3r: "p3r", p4t: "p4t", p4d: "p4d",
+      p5t: "p5t", p5d: "p5d", p5r: "p5r", i1t: "i1t", i2t: "i2t", i3t: "i3t", i1d: "i1d", i2d: "i2d",
+      i3d: "i3d", pub1: "pub1", pub2: "pub2", pub3: "pub3", foot: "foot"
+    };
+
+    function setLang(lang) {
+      const t = copy[lang];
+      Object.entries(map).forEach(([id, key]) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = t[key];
+      });
+      document.getElementById("i1r").textContent = t.roleAi;
+      document.getElementById("i2r").textContent = t.roleAi;
+      document.getElementById("i3r").textContent = t.roleBe;
+      document.getElementById("name-en").style.display = lang === "zh" ? "inline" : "none";
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+
+    setLang("zh");
+  </script>
 </body>
 </html>

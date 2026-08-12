@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Guozhi Zhan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #f7f8fa;
+      --paper: #fcfcfd;
+      --sidebar: #f0f4f5;
+      --ink: #18202a;
+      --muted: #66717d;
+      --line: #dfe5e8;
+      --line-strong: #c8d2d7;
+      --accent: #177c82;
+      --accent-soft: #e5f1f1;
+      --warm: #bd5d3b;
+      --font-body: "Inter", "Noto Sans SC", "Microsoft YaHei UI", "PingFang SC", Arial, sans-serif;
+      --font-heading: "Manrope", "Noto Sans SC", "Microsoft YaHei UI", "PingFang SC", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html {
+      max-width: 100%;
+      overflow-x: clip;
+      scroll-behavior: smooth;
+      scroll-padding-top: 24px;
+    }
+    body {
+      margin: 0;
+      max-width: 100%;
+      padding-left: 220px;
+      overflow-x: clip;
+      background: var(--canvas);
+      color: var(--ink);
+      font: 400 15px/1.76 var(--font-body);
+      letter-spacing: 0;
+      font-variant-numeric: tabular-nums;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .wrap {
+      display: block;
+      width: 100%;
+      min-height: 100vh;
+      background: var(--paper);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      width: 220px;
+      height: 100vh;
+      padding: 30px 22px 26px;
+      background: var(--sidebar);
+      border-right: 1px solid #d8ddda;
+      color: var(--ink);
+    }
+    .nav-brand {
+      display: block;
+      margin-bottom: 30px;
+      font-family: var(--font-heading);
+    }
+    .nav-brand-name {
+      display: block;
+      color: #17242b;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .nav-brand-role {
+      display: block;
+      margin-top: 5px;
+      color: #7a888e;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .nav-label {
+      margin: 0 0 13px 13px;
+      color: #7f8c92;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .nav a {
+      position: relative;
+      display: grid;
+      grid-template-columns: 30px minmax(0, 1fr);
+      align-items: center;
+      min-height: 43px;
+      padding: 7px 10px;
+      border-left: 2px solid transparent;
+      color: #536169;
+      font-size: 14px;
+      font-family: var(--font-heading);
+      font-weight: 500;
+      line-height: 1.35;
+      transition: color .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .nav a::before {
+      content: attr(data-index);
+      color: #98a5aa;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .nav a:hover {
+      background: #e5ecee;
+      color: #18262b;
+    }
+    .nav a.active {
+      border-left-color: var(--accent);
+      background: #dcebed;
+      color: #12686d;
+      font-weight: 600;
+    }
+    .nav a.active::before { color: var(--accent); }
+    .top, main, .foot {
+      width: min(calc(100% - 72px), 1040px);
+      max-width: 1040px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .top {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 22px;
+      padding: 46px 0 30px;
+      border-bottom: 1px solid var(--line-strong);
+    }
+    .top::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 64px;
+      height: 4px;
+      background: var(--accent);
+    }
+    .name {
+      max-width: 860px;
+      margin: 0;
+      color: #15202a;
+      font-size: 48px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.12;
+    }
+    .lead {
+      max-width: 850px;
+      margin: 13px 0 0;
+      color: #45525d;
+      font-size: 17px;
+      line-height: 1.72;
+    }
+    .focus {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .focus span {
+      padding: 5px 9px;
+      border: 1px solid #bdd9da;
+      background: var(--accent-soft);
+      color: #176a70;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .meta a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: #9eaaa3;
+      text-underline-offset: 4px;
+    }
+    .meta a:hover { color: var(--accent); }
+    .lang {
+      display: flex;
+      align-self: start;
+      gap: 2px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      background: #f7f8f7;
+    }
+    .lang button {
+      width: 50px;
+      height: 30px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .lang button.active { background: #173d46; color: #fff; }
+
+    main { counter-reset: section; }
+    .sec {
+      counter-increment: section;
+      padding: 36px 0 40px;
+      border-bottom: 1px solid var(--line);
+      scroll-margin-top: 20px;
+    }
+    .sec > h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 13px;
+      margin: 0 0 19px;
+      font-size: 26px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+    .sec > h2::before {
+      content: "0" counter(section);
+      display: inline-block;
+      min-width: 36px;
+      color: var(--accent);
+      font-family: var(--font-heading);
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .sec-intro {
+      max-width: 760px;
+      margin: -10px 0 20px 33px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .sec-intro:empty, .foot:empty { display: none; }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      border-top: 1px solid var(--line-strong);
+    }
+    .about p {
+      margin: 0;
+      padding: 15px 20px 0 0;
+      color: #46535e;
+      font-size: 14px;
+    }
+    .about p + p {
+      padding-left: 20px;
+      border-left: 1px solid var(--line);
+    }
+    .list { display: grid; }
+    .entry {
+      position: relative;
+      min-width: 0;
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+    }
+    .entry:first-child { border-top-color: var(--line-strong); }
+    .head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 148px;
+      gap: 24px;
+      align-items: start;
+    }
+    .title {
+      margin: 0;
+      color: #19242d;
+      font-size: 20px;
+      font-family: var(--font-heading);
+      font-weight: 600;
+      line-height: 1.38;
+    }
+    .time {
+      padding-top: 4px;
+      color: #78827c;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .publine { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .badge {
+      padding: 3px 8px;
+      border: 1px solid #ccd5d0;
+      border-radius: 2px;
+      color: #5f6b64;
+      font-size: 10px;
+      font-weight: 700;
+    }
+    .badge:first-child { border-color: #bcd5c7; background: var(--accent-soft); color: var(--accent); }
+    .desc { max-width: 900px; margin: 0; color: #4b5863; font-size: 14px; }
+    .desc p { margin: 0 0 9px; }
+    .desc p:last-child { margin-bottom: 0; }
+
+    #internships .entry, #work .entry {
+      display: grid;
+      grid-template-columns: 215px minmax(0, 1fr);
+      gap: 34px;
+    }
+    #internships .head, #work .head { display: block; }
+    #internships .time, #work .time { margin-top: 6px; text-align: left; }
+    #internships .desc, #work .desc { padding-top: 2px; }
+
+    .project-entry { padding: 24px 0 29px; }
+    #projects .head { grid-template-columns: minmax(0, 1fr); }
+    #projects .time { display: none; }
+    .project-entry .title { max-width: 820px; font-size: 24px; }
+    .project-entry .desc { max-width: 920px; font-size: 14px; }
+    .project-figure {
+      margin: 15px 0 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: #f7f8f7;
+    }
+    .project-figure img { width: 100%; height: auto; }
+    .project-caption {
+      display: block;
+      padding: 9px 12px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .project-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; }
+    .project-link {
+      padding: 6px 10px;
+      border: 1px solid var(--line-strong);
+      border-radius: 2px;
+      color: #34423b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .project-link:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    #cable-tie-post-training .videos {
+      grid-template-columns: minmax(0, 520px);
+      justify-content: start;
+    }
+    #bin-long-horizon .videos {
+      grid-template-columns: minmax(0, 680px);
+      justify-content: start;
+    }
+    .video-groups { display: grid; gap: 14px; min-width: 0; margin-top: 15px; }
+    .video-group-label {
+      margin-bottom: 8px;
+      color: #727e77;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .video-strip {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 0 8px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-color: #aebbb4 transparent;
+      scrollbar-width: thin;
+    }
+    .video-strip .video-card { flex: 0 0 min(350px, 72vw); }
+    .video, .video-card {
+      display: block;
+      min-width: 0;
+      padding: 8px;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: #fafbfa;
+    }
+    .video-placeholder {
+      display: flex;
+      min-height: 170px;
+      align-items: center;
+      justify-content: center;
+      border-style: dashed;
+      color: var(--muted);
+      text-align: center;
+    }
+    .video-player { display: block; width: 100%; aspect-ratio: 16 / 9; border-radius: 2px; background: #111; }
+    .video-meta { padding: 1px 2px 7px; }
+    .video-kicker { display: block; color: var(--warm); font-size: 9px; font-weight: 800; text-transform: uppercase; }
+    .video-title { display: block; margin-top: 7px; font-family: var(--font-heading); font-size: 13px; font-weight: 600; line-height: 1.4; }
+    .video-card .video-title { margin: 0; }
+    .video-note { display: block; margin-top: 4px; color: var(--muted); font-size: 11px; }
+
+    .publication-entry {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 14px;
+      padding: 14px 0;
+    }
+    .publication-index { color: var(--accent); font-size: 11px; font-weight: 700; }
+    .publication-entry .title { font-size: 16px; }
+    .foot { padding: 18px 0 24px; color: var(--muted); font-size: 12px; }
+
+    @media (min-width: 521px) and (max-width: 900px) {
+      body { padding-left: 176px; }
+      .nav { width: 176px; padding: 26px 14px 22px; }
+      .nav-brand { margin-bottom: 24px; }
+      .nav-brand-name { font-size: 16px; }
+      .nav-label { margin-left: 9px; }
+      .nav a {
+        grid-template-columns: 25px minmax(0, 1fr);
+        min-height: 41px;
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+      .top, main, .foot {
+        width: calc(100% - 36px);
+        max-width: none;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .top { grid-template-columns: 1fr; padding: 36px 0 26px; }
+      .name { font-size: 40px; }
+      .lang { position: absolute; top: 18px; right: 0; }
+      .top > div:first-child { padding-top: 30px; }
+      .about { grid-template-columns: 1fr; }
+      .about p { padding: 12px 0; }
+      .about p + p { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+      #internships .entry, #work .entry { grid-template-columns: 1fr; gap: 10px; }
+      .head { grid-template-columns: 1fr; gap: 5px; }
+      .time { text-align: left; }
+    }
+
+    @media (max-width: 520px) {
+      html { scroll-padding-top: 70px; }
+      body { padding-left: 0; }
+      .wrap { width: 100%; }
+      .nav {
+        position: sticky;
+        top: 0;
+        bottom: auto;
+        left: auto;
+        flex-direction: row;
+        width: 100%;
+        height: 58px;
+        padding: 0 24px;
+        overflow-x: auto;
+        border-bottom: 1px solid #d8ddda;
+        background: rgba(244, 246, 245, .98);
+      }
+      .nav-brand, .nav-label { display: none; }
+      .nav a {
+        display: block;
+        flex: 0 0 auto;
+        min-height: 58px;
+        padding: 19px 14px 15px;
+        border: 0;
+        white-space: nowrap;
+      }
+      .nav a::before { display: none; }
+      .nav a.active { box-shadow: inset 0 -2px var(--accent); }
+      .top, main, .foot { width: calc(100% - 32px); max-width: none; margin-right: 16px; margin-left: 16px; }
+      .top { padding: 38px 0 28px; }
+    }
+
+    @media (max-width: 520px) {
+      body { font-size: 14px; }
+      .nav { padding: 0 12px; }
+      .nav a { padding-right: 11px; padding-left: 11px; font-size: 12px; }
+      .top, main, .foot { width: calc(100% - 32px); }
+      .top { grid-template-columns: 1fr; gap: 16px; padding: 30px 0 24px; }
+      .name { font-size: 38px; }
+      .lead { margin-top: 16px; font-size: 16px; }
+      .lang { position: absolute; top: 18px; right: 0; }
+      .top > div:first-child { padding-top: 30px; }
+      .focus { padding-right: 0; }
+      .meta { overflow-wrap: anywhere; }
+      .sec { padding: 30px 0 34px; }
+      .sec > h2 { margin-bottom: 16px; font-size: 23px; }
+      .sec > h2::before { min-width: 32px; font-size: 23px; }
+      .sec-intro { margin: -7px 0 16px 30px; }
+      .about { grid-template-columns: 1fr; }
+      .about p { padding: 12px 0; }
+      .about p + p { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+      .head { grid-template-columns: 1fr; gap: 5px; }
+      .time { text-align: left; }
+      #internships .entry, #work .entry { grid-template-columns: 1fr; gap: 12px; }
+      .project-entry { padding: 20px 0 24px; }
+      .project-entry .title { font-size: 20px; }
+      .video-strip .video-card { flex-basis: 82vw; }
+      .publication-entry { grid-template-columns: 28px minmax(0, 1fr); gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Page navigation">
+      <div class="nav-brand">
+        <span class="nav-brand-name">Guozhi Zhan</span>
+        <span class="nav-brand-role">Robotics Portfolio</span>
+      </div>
+      <div class="nav-label">Contents</div>
+      <a href="#about" id="nav-about" data-index="01"></a>
+      <a href="#internships" id="nav-internships" data-index="02"></a>
+      <a href="#projects" id="nav-projects" data-index="03"></a>
+      <a href="#work" id="nav-work" data-index="04"></a>
+      <a href="#publications" id="nav-publications" data-index="05"></a>
+    </nav>
+    <header class="top">
+      <div>
+        <h1 class="name" id="name"></h1>
+        <p class="lead" id="lead"></p>
+        <div class="focus" aria-label="Research focus">
+          <span>Vision-Language-Action</span><span>Policy Post-Training</span><span>Real-World Manipulation</span>
+        </div>
+        <div class="meta">
+          <span><span id="label-email"></span>: <a href="mailto:benson_zhan@tongji.edu.cn">benson_zhan@tongji.edu.cn</a></span>
+        </div>
+      </div>
+      <div class="lang">
+        <button type="button" data-lang="zh" class="active">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="sec" id="about">
+        <h2 id="about-title"></h2>
+        <div class="about">
+          <p id="about-1"></p>
+          <p id="about-2"></p>
+          <p id="about-3"></p>
+        </div>
+      </section>
+
+      <section class="sec" id="internships">
+        <h2 id="internships-title"></h2>
+        <div class="list" id="internship-list"></div>
+      </section>
+
+      <section class="sec" id="projects">
+        <h2 id="projects-title"></h2>
+        <p class="sec-intro" id="projects-intro"></p>
+        <div class="list" id="project-list"></div>
+      </section>
+
+      <section class="sec" id="work">
+        <h2 id="work-title"></h2>
+        <div class="list" id="work-list"></div>
+      </section>
+
+      <section class="sec" id="publications">
+        <h2 id="publications-title"></h2>
+        <div class="list" id="publication-list"></div>
+      </section>
+    </main>
+
+    <footer class="foot" id="foot"></footer>
+  </div>
+
+  <script>
+    const copy = {
+      zh: {
+        name: "\u8a79\u56fd\u5fd7 / Guozhi Zhan",
+        lead: "\u540c\u6d4e\u5927\u5b66\u7855\u58eb\u7814\u7a76\u751f\uff0c\u4e13\u6ce8 VLA\u3001\u7b56\u7565\u540e\u8bad\u7ec3\u4e0e\u771f\u5b9e\u673a\u5668\u4eba\u64cd\u4f5c\uff0c\u5177\u5907\u4ece\u6570\u636e\u6784\u5efa\u3001\u6a21\u578b\u8bad\u7ec3\u5230\u771f\u673a\u90e8\u7f72\u8bc4\u6d4b\u7684\u5b8c\u6574\u7814\u53d1\u7ecf\u9a8c\u3002",
+        emailLabel: "\u90ae\u7bb1",
+        navAbout: "\u5173\u4e8e\u6211",
+        navProjects: "\u7814\u7a76\u9879\u76ee",
+        navInternships: "\u5b9e\u4e60\u7ecf\u5386",
+        navWork: "\u5de5\u4f5c\u7ecf\u5386",
+        navPublications: "\u7814\u7a76\u6210\u679c",
+        aboutTitle: "\u5173\u4e8e\u6211",
+        about1: "\u540c\u6d4e\u5927\u5b66\u7535\u5b50\u4fe1\u606f\u7855\u58eb\uff0c2027 \u5c4a\u6bd5\u4e1a\u751f\uff0c\u9762\u5411\u5177\u8eab\u667a\u80fd\u4e0e\u673a\u5668\u4eba\u5b66\u4e60\u7b97\u6cd5\u5c97\u4f4d\u3002\u7814\u7a76\u805a\u7126 Vision-Language-Action\u3001\u7b56\u7565\u540e\u8bad\u7ec3\u4e0e\u771f\u5b9e\u673a\u5668\u4eba\u64cd\u4f5c\u3002",
+        about2: "\u672c\u79d1\u5c31\u8bfb\u4e8e\u534e\u4e1c\u7406\u5de5\u5927\u5b66\u4e0e\u5fb7\u56fd\u5415\u8d1d\u514b\u5e94\u7528\u6280\u672f\u5927\u5b66\u53cc\u5b66\u58eb\u9879\u76ee\uff0c\u83b7\u7535\u6c14\u5de5\u7a0b\u53ca\u5176\u81ea\u52a8\u5316\u4e0e Information Technology \u5b66\u4f4d\u3002\u66fe\u83b7\u4e0a\u6d77\u5e02\u5956\u5b66\u91d1\u3001\u5fb7\u56fd DAAD \u5956\u5b66\u91d1\u3001\u4e09\u6b21\u7279\u7b49\u5956\u5b66\u91d1\u53ca\u6821\u4f18\u79c0\u6bd5\u4e1a\u751f\u3002",
+        about3: "\u5177\u5907\u4ece\u673a\u5668\u4eba\u6570\u636e\u6784\u5efa\u3001VLA \u8bad\u7ec3\u4e0e\u540e\u8bad\u7ec3\uff0c\u5230\u5f02\u6b65\u63a8\u7406\u3001\u771f\u673a\u90e8\u7f72\u548c\u95ed\u73af\u8bc4\u6d4b\u7684\u5b8c\u6574\u7ecf\u9a8c\uff0c\u9879\u76ee\u8986\u76d6\u53cc\u81c2\u957f\u65f6\u64cd\u4f5c\u3001\u591a\u7269\u4f53\u8bed\u8a00\u6761\u4ef6\u6293\u53d6\u3001\u52a8\u6001\u6293\u53d6\u4e0e\u81ea\u4e3b\u5931\u8d25\u6062\u590d\u3002",
+        projectsTitle: "\u7814\u7a76\u9879\u76ee",
+        projectsIntro: "",
+        internshipsTitle: "\u5b9e\u4e60\u7ecf\u5386",
+        workTitle: "\u5de5\u4f5c\u7ecf\u5386",
+        publicationsTitle: "\u7814\u7a76\u6210\u679c",
+        foot: "",
+        kindResearch: "\u79d1\u7814",
+        kindProject: "\u9879\u76ee",
+        outputLabel: "\u8bba\u6587\u4ea7\u51fa",
+        outputNone: "\u6682\u65e0",
+        roleAi: "\u5177\u8eab\u667a\u80fd\u7b97\u6cd5\u5b9e\u4e60\u751f",
+        roleInfor: "\u540e\u7aef\u7814\u53d1\u5de5\u7a0b\u5e08",
+        videoLabel: "\u89c6\u9891",
+        videoPlaceholder: "\u5360\u4f4d",
+        internships: [
+          { company: "\u5c0f\u7c73", role: "\u5177\u8eab\u667a\u80fd\u7b97\u6cd5\u5b9e\u4e60\u751f", time: "2026.05 - \u81f3\u4eca", desc: "\u56f4\u7ed5\u5177\u8eab\u64cd\u4f5c\u4e2d\u7684 VLA \u8bad\u7ec3\u3001\u7b56\u7565\u540e\u8bad\u7ec3\u4e0e\u5f02\u6784\u6570\u636e\u7edf\u4e00\u5efa\u6a21\u5f00\u5c55\u7b97\u6cd5\u7814\u53d1\u3002\u591a\u7269\u4f53\u8bed\u8a00\u6761\u4ef6\u6293\u53d6\u4efb\u52a1\u4e2d\uff0c\u5b8c\u6210\u6570\u636e\u6e05\u6d17\u3001\u76ee\u6807\u6846\u6807\u6ce8\u3001\u8bed\u8a00\u6307\u4ee4\u589e\u5f3a\u3001VLA \u8bad\u7ec3\u4e0e\u6cdb\u5316\u8bc4\u4f30\uff0c\u652f\u6301\u6a21\u578b\u6839\u636e\u81ea\u7136\u8bed\u8a00\u5728\u591a\u7269\u4f53\u573a\u666f\u4e2d\u5b9a\u4f4d\u5e76\u6293\u53d6\u6307\u5b9a\u76ee\u6807\u3002\u7a7f\u624e\u5e26\u4efb\u52a1\u4e2d\uff0c\u57fa\u4e8e\u9065\u64cd\u4f5c\u793a\u6559\u521d\u59cb\u5316 VLA \u7b56\u7565\uff0c\u901a\u8fc7\u771f\u673a rollout \u4e0e\u4eba\u7c7b\u5e72\u9884\u56de\u6536\u6210\u529f\u3001\u5931\u8d25\u53ca\u5e72\u9884\u8f68\u8ff9\uff0c\u5e76\u5f15\u5165\u4ef7\u503c\u8bc4\u4f30\u4e0e\u4f18\u52bf\u6761\u4ef6\u5316\u6807\u6ce8\u8fdb\u884c\u79bb\u7ebf RL \u540e\u8bad\u7ec3\u3002UCAG-P \u5de5\u4f5c\u4e2d\uff0c\u53c2\u4e0e\u76f8\u673a\u4e2d\u5fc3\u5f02\u6784\u5177\u8eab\u6570\u636e\u7edf\u4e00\u5efa\u6a21\uff0c\u5c06\u4e0d\u540c\u673a\u5668\u4eba\u672c\u4f53\u4e0e\u4eba\u7c7b\u6f14\u793a\u6570\u636e\u5bf9\u9f50\u5230\u5171\u4eab\u89c6\u89c9\u51e0\u4f55\u52a8\u4f5c\u7a7a\u95f4\u3002" },
+          { company: "\u9e7f\u660e\u673a\u5668\u4eba", role: "\u5177\u8eab\u667a\u80fd\u7b97\u6cd5\u5b9e\u4e60\u751f", time: "2026.01 - 2026.03", desc: "\u53c2\u4e0e FastUMI \u6570\u636e\u91c7\u96c6\u7cfb\u7edf\u7684\u7b97\u6cd5\u8fed\u4ee3\u4e0e\u771f\u673a\u90e8\u7f72\uff0c\u56f4\u7ed5\u771f\u5b9e\u673a\u68b0\u81c2\u5e73\u53f0\u5b8c\u6210\u591a\u6a21\u6001\u8f68\u8ff9\u6570\u636e\u5904\u7406\u3001ACT / Diffusion Policy / Pi0 \u7b49\u7b56\u7565\u6a21\u578b\u8bad\u7ec3\u4e0e\u5fae\u8c03\uff0c\u5e76\u5728 startouch \u7b49\u5e73\u53f0\u4e0a\u8fdb\u884c\u7b56\u7565\u90e8\u7f72\u3001\u5b9e\u673a\u8c03\u8bd5\u548c\u52a8\u4f5c\u9891\u7387\u4f18\u5316\uff0c\u652f\u6491\u201c\u6570\u636e\u91c7\u96c6-\u6a21\u578b\u8bad\u7ec3-\u7b56\u7565\u90e8\u7f72\u201d\u7684\u95ed\u73af\u9a8c\u8bc1\u3002" },
+          { company: "\u6069\u5bcc\u8f6f\u4ef6\uff08Infor\uff09", role: "\u540e\u7aef\u7814\u53d1\u5de5\u7a0b\u5e08", time: "2021.08 - 2023.07", desc: "\u5728\u5916\u4f01\u4f01\u4e1a\u8f6f\u4ef6\u73af\u5883\u4e0b\u53c2\u4e0e\u6838\u5fc3 ERP \u6a21\u5757\u5f00\u53d1\u4e0e\u7ef4\u62a4\uff0c\u8d1f\u8d23\u90e8\u5206\u5b58\u50a8\u8fc7\u7a0b\u5411 C# \u670d\u52a1\u8fc1\u79fb\u4e0e\u6027\u80fd\u4f18\u5316\u3002" }
+        ],
+        publications: [
+          { title: "UCAG-P: Unified Camera-Centric Action Geometry for Heterogeneous Embodied Manipulation", line: "AAAI \u5728\u6295" },
+          { title: "DynaMoE: Dynamic Target Interception via Velocity-Conditioned Mixture of Experts", line: "\u7b2c\u4e00\u4f5c\u8005\uff0cRAL Revise" },
+          { title: "Action and Detection Chunking with Transformers based on Experience Tree", line: "\u7b2c\u4e8c\u4f5c\u8005\uff0cRAL\u5df2\u5f55\u7528" },
+          { title: "Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping", line: "\u7b2c\u4e00\u4f5c\u8005\uff0cTASE \u5728\u6295" },
+          { title: "Foundation Models for Dynamical Systems", line: "\u53c2\u4e0e\u4f5c\u8005\uff0cNeurocomputing \u5728\u6295\uff1b\u8d1f\u8d23\u63a7\u5236\u4efb\u52a1\u76f8\u5173\u7ae0\u8282\uff0c\u68b3\u7406 VLA \u4e0e WAM \u5728\u673a\u5668\u4eba\u63a7\u5236\u3001\u5177\u8eab\u51b3\u7b56\u548c\u52a8\u4f5c\u751f\u6210\u4e2d\u7684\u65b9\u6cd5\u4e0e\u5e94\u7528\u8fb9\u754c" }
+        ],
+        projects: [
+          { title: "Value-Guided Offline RL Post-Training for Cable-Tie Threading", subtitle: "\u7a7f\u624e\u5e26\u4efb\u52a1\u4ef7\u503c\u5f15\u5bfc\u79bb\u7ebf RL \u540e\u8bad\u7ec3", kind: "\u9879\u76ee", output: "\u6682\u65e0", time: "2026.06 - 2026.07", desc: "\u5728 ARX \u65b9\u821f\u53cc\u81c2\u673a\u68b0\u81c2\u4e0a\uff0c\u4ee5 Meta Quest VR \u9065\u64cd\u4f5c\u91c7\u96c6\u793a\u6559\uff0c\u5e76\u6784\u5efa\u201c\u793a\u6559\u521d\u59cb\u5316 - \u81ea\u4e3b rollout - \u4eba\u5de5\u63a5\u7ba1\u7ea0\u6b63 - \u6570\u636e\u56de\u6536 - \u540e\u8bad\u7ec3\u201d\u7684\u4ea4\u4e92\u6570\u636e\u95ed\u73af\uff1b\u63d2\u5165\u5931\u8d25\u6216\u504f\u79bb\u5b54\u4f4d\u65f6\uff0c\u4eba\u5de5\u5c06\u624e\u5e26\u5e26\u56de\u9884\u63d2\u5165\u72b6\u6001\uff0c\u91c7\u96c6\u56de\u9000\u4e0e\u4e8c\u6b21\u63d2\u5165\u7ea0\u6b63\u8f68\u8ff9\u3002\u57fa\u4e8e RECAP \u8303\u5f0f\u8bad\u7ec3 value model \u4f30\u8ba1 Return-to-go\uff0c\u6309\u56fa\u5b9a\u65f6\u95f4\u8de8\u5ea6\u540e\u7684\u4ef7\u503c\u53d8\u5316\u53ca 30% \u9608\u503c\u5212\u5206\u4f18\u52bf\u52a8\u4f5c\uff0c\u7528\u4e8e VLA \u540e\u8bad\u7ec3\uff1b\u7ecf\u6210\u529f\u3001\u5931\u8d25\u4e0e\u4eba\u5de5\u7ea0\u6b63\u8f68\u8ff9\u914d\u6bd4\u6d88\u878d\u540e\uff0c\u4e0b\u91c7\u6837\u5931\u8d25\u8f68\u8ff9\u3002\u5728 40 \u4e2a\u4e0d\u540c\u521d\u59cb\u4f4d\u59ff\u3001\u5168\u7a0b\u65e0\u4eba\u5de5\u5e72\u9884\u7684\u6d4b\u8bd5\u4e2d\uff0c\u9996\u6b21\u63d2\u5165\u6210\u529f 31/40\uff0877.5%\uff09\uff0c\u81ea\u4e3b\u6062\u590d\u540e\u6700\u7ec8\u6210\u529f 39/40\uff0897.5%\uff09\uff1b\u5728\u76f8\u540c pi0.5 \u521d\u59cb\u5316\u4e0e SFT \u6570\u636e\u4e0b\uff0cRLT \u5728\u7ebf\u5f3a\u5316\u5b66\u4e60\u65b9\u6848\u4e3a 26/40\uff0865.0%\uff09\u3002", videoSources: [{ href: "videos/2026_06_zhadai/2026_07_zhadai.mp4", title: "\u7a7f\u624e\u5e26\u6f14\u793a", note: "", embed: true }] },
+          { title: "Post-Training for Robotics Challenge", subtitle: "RSS 2026 \u771f\u5b9e\u53cc\u81c2\u64cd\u4f5c\u540e\u8bad\u7ec3\u6311\u6218\u8d5b", kind: "\u6311\u6218\u8d5b", output: "\u6682\u65e0", time: "2026.06 - 2026.07", desc: "\u53c2\u52a0 RSS 2026 Workshop on Post-Training for Robotics Foundation Models \u6311\u6218\u8d5b\uff0c\u9762\u5411\u9f20\u6807\u7535\u6c60\u5b89\u88c5\u3001\u6c49\u8bfa\u5854\u4e0e\u6c34\u74f6\u76d6\u65cb\u7d27\u4e09\u9879\u771f\u5b9e\u53cc\u81c2\u64cd\u4f5c\u4efb\u52a1\u8fdb\u884c VLA \u540e\u8bad\u7ec3\u4e0e\u7b56\u7565\u8bc4\u6d4b\u3002Single-Task Track Phase 1 \u5b98\u65b9\u6700\u7ec8\u699c\u5355\u7b2c 7 \u540d\uff1b\u4e09\u9879\u4efb\u52a1\u6210\u529f\u7387\u4e3a 60% / 0% / 60%\uff0c\u5e73\u5747\u6210\u529f\u7387\u4e3a 40%\uff1b\u540e\u7eed\u76f8\u540c\u534f\u8bae\u8865\u6d4b\u4e2d\uff0c\u6c49\u8bfa\u5854\u4efb\u52a1\u6210\u529f\u7387\u63d0\u5347\u81f3 20%\u3002" },
+          { title: "VLA Multi-Object Grasping", subtitle: "VLA \u591a\u7269\u4f53\u8bed\u8a00\u6761\u4ef6\u6293\u53d6", kind: "\u9879\u76ee", output: "\u6682\u65e0", time: "2026.05 - 2026.06", desc: "\u56f4\u7ed5\u591a\u7269\u4f53\u573a\u666f\u4e0b\u7684\u8bed\u8a00\u6761\u4ef6\u6293\u53d6\uff0c\u6784\u5efa\u4ece\u6293\u53d6\u7247\u6bb5\u6316\u6398\u3001\u6293\u53d6\u524d\u5173\u952e\u5e27\u7b5b\u9009\u3001\u76ee\u6807\u6846\u6807\u6ce8\u5230\u8bed\u8a00\u6307\u4ee4\u589e\u5f3a\u7684 VLA \u6570\u636e\u6d41\u6c34\u7ebf\u3002\u8bbe\u8ba1\u5c42\u7ea7\u5316\u533a\u57df-\u8bed\u8a00\u5bf9\u6bd4\u5b66\u4e60\u65b9\u6cd5\uff0c\u4ee5\u68c0\u6d4b\u6846\u5185\u76ee\u6807\u533a\u57df\u7279\u5f81\u66ff\u4ee3\u6574\u56fe\u7279\u5f81\uff0c\u8054\u5408\u8de8\u7269\u4f53\u7c7b\u522b\u5bf9\u6bd4\u4e0e\u7c7b\u5185\u7ec6\u7c92\u5ea6\u5c5e\u6027\u5bf9\u6bd4\uff0c\u63d0\u5347\u6a21\u578b\u5bf9\u81ea\u7136\u8bed\u8a00\u6307\u5b9a\u76ee\u6807\u7684\u5b9a\u4f4d\u3001\u533a\u5206\u4e0e\u6293\u53d6\u80fd\u529b\u3002\n\u4e0b\u65b9\u89c6\u9891\u5c55\u793a\u6a21\u578b\u5728\u591a\u7269\u4f53\u573a\u666f\u4e2d\u7684\u6307\u4ee4\u8ddf\u968f\u4e0e\u6cdb\u5316\u80fd\u529b\uff1a\u7b2c\u4e00\u7ec4\u4e3a\u672a\u540c\u65f6\u51fa\u73b0\u5728\u8bad\u7ec3\u96c6\u4e2d\u7684\u4e09\u8272\u7269\u4f53\u5757\u7ec4\u5408\uff0c\u7b2c\u4e8c\u7ec4\u4e3a\u8bad\u7ec3\u96c6\u5185\u7269\u4f53\uff0c\u7b2c\u4e09\u7ec4\u4e3a OOD prompt \"pick up yellow pear\"\u3002", videoGroups: [{ label: "\u53cc\u7c92\u5ea6\u5bf9\u6bd4\u5b66\u4e60 / \u4e09\u8272\u7269\u4f53\u5757", items: [{ href: "videos/2026_05_grasp/orange_block.mp4", title: "pick up orange block", note: "", embed: true }, { href: "videos/2026_05_grasp/red_block.mp4", title: "pick up red block", note: "", embed: true }, { href: "videos/2026_05_grasp/blue_block.mp4", title: "pick up blue block", note: "", embed: true }] }, { label: "\u8bad\u7ec3\u96c6\u7269\u4f53", items: [{ href: "videos/2026_05_grasp/bell.mp4", title: "pick up bell", note: "", embed: true }, { href: "videos/2026_05_grasp/bowl.mp4", title: "pick up bowl", note: "", embed: true }, { href: "videos/2026_05_grasp/eraser.mp4", title: "pick up eraser", note: "", embed: true }, { href: "videos/2026_05_grasp/plastic_bottle.mp4", title: "pick up plastic bottle", note: "", embed: true }, { href: "videos/2026_05_grasp/stapler.mp4", title: "pick up stapler", note: "", embed: true }] }, { label: "OOD Prompt", items: [{ href: "videos/2026_05_grasp/pear.mp4", title: "pick up yellow pear", note: "", embed: true }] }] },
+          { title: "UCAG-P", subtitle: "面向异构具身操作数据的相机中心 VLA 统一建模", kind: "科研", output: "AAAI 在投 / 第三作者", time: "2026.05 - 2026.08", desc: "面向机器人形态、相机配置与低层动作空间不一致导致的 VLA 数据难以统一训练问题，参与提出相机中心具身操作建模框架 UCAG-P，将单臂、双臂、人形机器人、灵巧手与人类演示数据对齐到共享视觉几何动作空间。参与构建基于腕部/末端执行器与抓取中心的双锚点动作表示，并协助实现几何条件化动作转换模块，将共享几何动作映射为目标机器人可执行控制指令。该方法基于 11 个数据集、超过 6,000 小时、覆盖 9 类机器人/人类本体的异构具身数据进行训练，在 LIBERO、LIBERO-Plus、RoboTwin Easy/Hard 与 RoboCasa GR1 上分别取得 98.25%、82.0%、88.45% / 89.12% 与 62.0% 成功率。", image: { src: "images/ucagp_overview.png", alt: "UCAG-P overview figure", caption: "UCAG-P 总览：异构数据源、相机中心几何表示与评测结果。" } },
+          { title: "SpeedACT", subtitle: "\u57fa\u4e8e\u8fd0\u52a8\u5b66\u5f15\u5bfc\u7684\u591a\u901f\u5ea6\u52a8\u6001\u6293\u53d6\u6a21\u4eff\u5b66\u4e60", kind: "\u79d1\u7814", output: "RAL revise / \u5728\u6295", time: "2026.01 - 2026.03", desc: "\u9488\u5bf9\u4f20\u7edf ACT \u5728\u8de8\u901f\u5ea6\u52a8\u6001\u6293\u53d6\u4e2d\u5bf9\u901f\u5ea6\u53d8\u5316\u654f\u611f\uff0c\u6784\u5efa\u4e86\u901f\u5ea6\u81ea\u9002\u5e94\u7684\u89c6\u89c9-\u52a8\u4f5c\u751f\u6210\u6846\u67b6\u3002\u5728\u6a21\u578b\u8bbe\u8ba1\u4e0a\u5f15\u5165\u8fd0\u52a8\u5b66\u5f15\u5bfc\u7684\u4e13\u5bb6\u8def\u7531\u673a\u5236\uff0c\u7ed3\u5408\u975e\u5bf9\u79f0\u65f6\u7a7a\u6b63\u5219\u9879\u7ea6\u675f\u52a8\u4f5c\u751f\u6210\u8fc7\u7a0b\uff0c\u5728\u672a\u89c1\u901f\u5ea6\u533a\u95f4\u4e0a\u5b9e\u73b0 100% \u6293\u53d6\u6210\u529f\u7387\uff0c\u540c\u65f6\u4fdd\u6301\u8f83\u597d\u7684\u8f68\u8ff9\u5e73\u6ed1\u6027\u4e0e\u6cdb\u5316\u80fd\u529b\u3002\n\u4e0b\u65b9\u89c6\u9891\u6309\u901f\u5ea6\u4ece\u4f4e\u5230\u9ad8\u6392\u5217\uff1b\u7b2c\u4e00\u884c\u4e3a\u8bad\u7ec3\u96c6\u901f\u5ea6\uff0c\u7b2c\u4e8c\u884c\u4e3a\u672a\u89c1\u901f\u5ea6\u3002", videoGroups: [{ label: "\u8bad\u7ec3\u96c6\u901f\u5ea6", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_0.mp4", title: "\u4f4e\u901f", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_2.mp4", title: "\u4e2d\u901f", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_4.mp4", title: "\u9ad8\u901f", note: "", embed: true }] }, { label: "\u672a\u89c1\u901f\u5ea6", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_1.mp4", title: "\u4f4e\u4e2d\u901f", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_3.mp4", title: "\u4e2d\u9ad8\u901f", note: "", embed: true }] }] },
+          { title: "ADCT", subtitle: "\u57fa\u4e8e\u7ecf\u9a8c\u6811\u7684\u591a\u76ee\u6807\u5206\u7c7b\u4e0e\u6293\u53d6", kind: "\u79d1\u7814", output: "RAL", time: "2025.05 - 2025.10", desc: "\u9762\u5411\u5355\u573a\u666f\u4e0b\u7684\u591a\u76ee\u6807\u8fde\u7eed\u5206\u62e3\u4efb\u52a1\uff0c\u63d0\u51fa\u4e86\u57fa\u4e8e experience tree \u7684 action and detection chunking \u65b9\u6cd5\u3002\u8be5\u65b9\u6cd5\u80fd\u4ece\u4e13\u5bb6\u8f68\u8ff9\u4e2d\u63d0\u53d6\u5206\u6bb5\u51b3\u7b56\u77e5\u8bc6\uff0c\u5e76\u7ed3\u5408\u52a8\u6001\u68c0\u6d4b\u7279\u5f81\u4e0e\u6b65\u957f\u8c03\u6574\u673a\u5236\uff0c\u51cf\u8f7b\u957f\u5e8f\u5217\u64cd\u4f5c\u4e2d\u7684\u8bef\u5dee\u7d2f\u79ef\u3002ADCT \u5728\u5355\u573a\u666f\u548c\u591a\u573a\u666f\u591a\u76ee\u6807\u6293\u53d6\u4e2d\u5206\u522b\u8fbe\u5230 96% \u548c 91% \u6210\u529f\u7387\uff1b\u5c06\u7ecf\u9a8c\u6811\u95e8\u63a7\u7b56\u7565\u90e8\u7f72\u5230 Diffusion Policy \u540e\uff0c\u5bf9\u5e94\u6210\u529f\u7387\u8fbe\u5230 89% \u548c 88%\u3002" },
+          { title: "MA-ACT", subtitle: "\u9762\u5411\u52a8\u6001\u6293\u53d6\u7684\u8fd0\u52a8\u611f\u77e5\u6a21\u4eff\u5b66\u4e60\u6846\u67b6", kind: "\u79d1\u7814", output: "\u5728\u6295", time: "2025.03 - 2025.10", desc: "\u56f4\u7ed5\u52a8\u6001\u76ee\u6807\u6293\u53d6\u4e2d\u201c\u770b\u5f97\u89c1\u4f46\u8ddf\u4e0d\u4e0a\u201d\u7684\u95ee\u9898\uff0c\u5bf9 ACT \u8fdb\u884c motion-aware \u6539\u9020\u3002\u6211\u5c06\u8fd0\u52a8\u611f\u77e5\u8868\u5f81\u4e0e motion-vision fusion \u6a21\u5757\u5d4c\u5165\u7b56\u7565\u7f51\u7edc\uff0c\u63d0\u5347\u4e86\u5bf9\u76ee\u6807\u901f\u5ea6\u53d8\u5316\u548c\u8f68\u8ff9\u8d8b\u52bf\u7684\u5efa\u6a21\u80fd\u529b\uff0c\u5728\u53d7\u63a7\u53d8\u901f\u573a\u666f\u4e0b\u95ed\u73af\u6210\u529f\u7387\u8fbe\u5230 100%\uff0c\u5728\u6742\u4e71\u80cc\u666f\u4e0b\u4ecd\u4fdd\u6301 91.7% \u7684\u6293\u53d6\u8868\u73b0\u3002\n\u4e0b\u65b9\u89c6\u9891\u5206\u522b\u5bf9\u5e94\u4f4e\u901f\u3001\u9ad8\u901f\u4e0e\u9ad8\u901f\u5e26\u5e72\u6270\u7269\u4e09\u79cd\u4ee3\u8868\u573a\u666f\u3002", videos: 3, videoSources: [{ href: "videos/2026_01_dynamic_grasp/low_speed.mp4", title: "\u4f4e\u901f\u52a8\u6001\u6293\u53d6", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed.mp4", title: "\u9ad8\u901f\u52a8\u6001\u6293\u53d6", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed_with_distractors.mp4", title: "\u9ad8\u901f\u5e72\u6270\u573a\u666f\u6293\u53d6", note: "", embed: true }] }
+        ]
+      },
+      en: {
+        name: "Guozhi Zhan",
+        lead: "Master's student at Tongji University specializing in VLA, policy post-training, and real-world robot manipulation, with end-to-end experience from dataset construction and model training to deployment and evaluation.",
+        emailLabel: "Email",
+        navAbout: "About",
+        navProjects: "Research Projects",
+        navInternships: "Internships",
+        navWork: "Work",
+        navPublications: "Research Outputs",
+        aboutTitle: "About Me",
+        about1: "I am a 2027 M.S. candidate in Electronic Information at Tongji University, seeking algorithm roles in embodied intelligence and robot learning. My work focuses on Vision-Language-Action models, policy post-training, and real-world robot manipulation.",
+        about2: "I earned dual bachelor's degrees in Electrical Engineering and Automation and Information Technology through the joint program of East China University of Science and Technology and Technical University of Applied Sciences Luebeck. My honors include the Shanghai Municipal Scholarship, DAAD Scholarship, three Special-Class Scholarships, and Outstanding Graduate of ECUST.",
+        about3: "I have end-to-end experience spanning robot dataset construction, VLA training and post-training, asynchronous inference, real-robot deployment, and closed-loop evaluation, with projects in long-horizon bimanual manipulation, language-conditioned multi-object grasping, dynamic grasping, and autonomous failure recovery.",
+        projectsTitle: "Research Projects",
+        projectsIntro: "",
+        internshipsTitle: "Internships",
+        workTitle: "Work Experience",
+        publicationsTitle: "Research Outputs",
+        foot: "",
+        kindResearch: "Research",
+        kindProject: "Project",
+        outputLabel: "Output",
+        outputNone: "None yet",
+        roleAi: "Embodied Intelligence Algorithm Intern",
+        roleInfor: "Backend R&D Engineer",
+        videoLabel: "Video",
+        videoPlaceholder: "Placeholder",
+        internships: [
+          { company: "Xiaomi", role: "Embodied Intelligence Algorithm Intern", time: "2026.05 - Present", desc: "Worked on VLA training, policy post-training, and heterogeneous-data unified modeling for embodied manipulation. The multi-object grasping work covered data cleaning, object-box annotation, language instruction augmentation, VLA training, and generalization evaluation for language-specified grasping in multi-object scenes. The dressing work initialized a VLA policy from teleoperation demonstrations, collected successful, failed, and intervention trajectories through real-robot rollouts with human intervention, and applied value-guided offline RL post-training. For UCAG-P, I contributed to camera-centric unified modeling of heterogeneous embodied data, aligning different robot embodiments and human demonstrations into a shared visual-geometric action space." },
+          { company: "Luming Robotics", role: "Embodied Intelligence Algorithm Intern", time: "2026.01 - 2026.03", desc: "Contributed to FastUMI data-collection system iteration and real-robot deployment. I processed multimodal trajectory data, trained and fine-tuned ACT, Diffusion Policy, and Pi0-style policies, and deployed policies on startouch and other real-robot platforms with debugging and action-frequency optimization, supporting a closed loop from data collection to model training and policy deployment." },
+          { company: "Infor", role: "Backend R&D Engineer", time: "2021.08 - 2023.07", desc: "Worked in an international enterprise software environment on core ERP development, C# service migration, and performance optimization." }
+        ],
+        publications: [
+          { title: "UCAG-P: Unified Camera-Centric Action Geometry for Heterogeneous Embodied Manipulation", line: "AAAI under submission" },
+          { title: "DynaMoE: Dynamic Target Interception via Velocity-Conditioned Mixture of Experts", line: "First author, RAL Revise" },
+          { title: "Action and Detection Chunking with Transformers based on Experience Tree", line: "Second author, Accepted by RAL" },
+          { title: "Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping", line: "First author, under submission to TASE" },
+          { title: "Foundation Models for Dynamical Systems", line: "Contributing author, Neurocomputing under submission; wrote the control-related sections covering VLA and WAM methods for robot control, embodied decision-making, and action generation" }
+        ],
+        projects: [
+          { title: "Value-Guided Offline RL Post-Training for Cable-Tie Threading", subtitle: "Value-guided offline RL post-training for cable-tie threading", kind: "Project", output: "None yet", time: "2026.06 - 2026.07", desc: "Built an interactive data loop on an ARX bimanual robot using Meta Quest teleoperation: demonstrations initialize the policy, autonomous rollouts are corrected by human takeover after failed insertion or hole misalignment, and the recovered trajectories are used for post-training. Following RECAP, a value model estimates return-to-go and labels advantageous actions from value changes over a fixed horizon using a 30% threshold; an ablation over successful, failed, and human-correction trajectories led to downsampling failed trajectories. Across 40 distinct initial poses with no intervention during evaluation, first-pass insertion succeeded in 31/40 trials (77.5%) and autonomous recovery raised final success to 39/40 (97.5%). With the same pi0.5 initialization and SFT data, RLT online reinforcement learning achieved 26/40 (65.0%).", videoSources: [{ href: "videos/2026_06_zhadai/2026_07_zhadai.mp4", title: "Cable-Tie Threading Demo", note: "", embed: true }] },
+          { title: "Post-Training for Robotics Challenge", subtitle: "RSS 2026 real-world bimanual manipulation challenge", kind: "Challenge", output: "None yet", time: "2026.06 - 2026.07", desc: "Participated in the RSS 2026 Workshop on Post-Training for Robotics Foundation Models challenge, evaluating VLA post-training on three real-world bimanual manipulation tasks: mouse battery installation, Tower of Hanoi, and bottle-cap tightening. Ranked 7th on the official Phase 1 final Single-Task Track leaderboard, with task success rates of 60% / 0% / 60% and an average success rate of 40%. In a subsequent evaluation under the same protocol, Tower of Hanoi success improved to 20%." },
+          { title: "VLA Multi-Object Grasping", subtitle: "Language-conditioned multi-object grasping with VLA", kind: "Project", output: "None yet", time: "2026.05 - 2026.06", desc: "Built a VLA data pipeline for language-conditioned grasping in multi-object scenes, covering grasp-clip mining, pre-grasp key-frame selection, object-box annotation, and language instruction augmentation. I designed a hierarchical region-language contrastive learning method that replaces whole-image features with target-region features and combines cross-object category contrast with fine-grained intra-class attribute contrast, improving target localization, discrimination, and grasping under natural-language instructions.\nThe videos below show instruction following and generalization in multi-object scenes: the first group uses a three-color block combination that never appeared together in training, the second group shows seen objects, and the third group isolates the OOD prompt \"pick up yellow pear\".", videoGroups: [{ label: "Bi-Granularity Contrastive Learning / Colored Blocks", items: [{ href: "videos/2026_05_grasp/orange_block.mp4", title: "pick up orange block", note: "", embed: true }, { href: "videos/2026_05_grasp/red_block.mp4", title: "pick up red block", note: "", embed: true }, { href: "videos/2026_05_grasp/blue_block.mp4", title: "pick up blue block", note: "", embed: true }] }, { label: "Seen Objects", items: [{ href: "videos/2026_05_grasp/bell.mp4", title: "pick up bell", note: "", embed: true }, { href: "videos/2026_05_grasp/bowl.mp4", title: "pick up bowl", note: "", embed: true }, { href: "videos/2026_05_grasp/eraser.mp4", title: "pick up eraser", note: "", embed: true }, { href: "videos/2026_05_grasp/plastic_bottle.mp4", title: "pick up plastic bottle", note: "", embed: true }, { href: "videos/2026_05_grasp/stapler.mp4", title: "pick up stapler", note: "", embed: true }] }, { label: "OOD Prompt", items: [{ href: "videos/2026_05_grasp/pear.mp4", title: "pick up yellow pear", note: "", embed: true }] }] },
+          { title: "UCAG-P", subtitle: "Camera-centric unified VLA modeling for heterogeneous embodied manipulation data", kind: "Research", output: "AAAI under submission / third author", time: "2026.05 - 2026.08", desc: "Worked on camera-centric VLA modeling for heterogeneous embodied manipulation data, where robot embodiment, camera configuration, and low-level action spaces differ across datasets. I contributed to UCAG-P, which aligns single-arm, bimanual, humanoid, dexterous-hand, and human-demonstration data into a shared visual-geometric action space. I also contributed to a dual-anchor action representation based on wrist/end-effector and grasp-center motion, plus a geometry-conditioned action conversion module that maps shared geometric actions to executable robot commands. The model was trained on 11 datasets with over 6,000 hours of data covering 9 robot/human embodiments, achieving 98.25% on LIBERO, 82.0% on LIBERO-Plus, 88.45% / 89.12% on RoboTwin Easy/Hard, and 62.0% on RoboCasa GR1.", image: { src: "images/ucagp_overview.png", alt: "UCAG-P overview figure", caption: "UCAG-P overview: heterogeneous data sources, shared camera-centric geometry, and evaluation." } },
+          { title: "SpeedACT", subtitle: "Kinematic-guided imitation learning for multi-speed dynamic grasping", kind: "Research", output: "RAL revise / under submission", time: "2026.01 - 2026.03", desc: "Targeted the generalization gap of ACT-style policies under varying target speeds by building a speed-adaptive visual action generation framework. The method combines kinematic-guided expert routing with asymmetric spatiotemporal regularization, improving motion consistency and delivering 100% grasp success on unseen speed intervals.\nThe demos below are ordered from low to high speed; the first row shows training-set speeds, and the second row shows held-out speeds.", videoGroups: [{ label: "Training Speeds", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_0.mp4", title: "Low Speed", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_2.mp4", title: "Medium Speed", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_4.mp4", title: "High Speed", note: "", embed: true }] }, { label: "Held-out Speeds", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_1.mp4", title: "Low-Medium Speed", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_3.mp4", title: "Medium-High Speed", note: "", embed: true }] }] },
+          { title: "ADCT", subtitle: "Experience-tree based multi-target classification and grasping", kind: "Research", output: "RAL", time: "2025.05 - 2025.10", desc: "Proposed an action and detection chunking method based on experience trees for sequential multi-target picking in a single scene. By extracting staged decision knowledge from expert trajectories and coupling it with dynamic detection features and step-size adjustment, the method reduced accumulated execution error. ADCT achieved 96% success in single-scene multi-target grasping and 91% across multiple scenes; when the experience-tree gating strategy was applied to Diffusion Policy, success reached 89% and 88% in the same settings." },
+          { title: "MA-ACT", subtitle: "Motion-aware imitation learning for robust dynamic grasping", kind: "Research", output: "Under submission", time: "2025.03 - 2025.10", desc: "Extended ACT with motion-aware representations and a motion-vision fusion design so the policy can better model target velocity changes and trajectory trends. The resulting system reached 100% closed-loop success in controlled variable-speed settings and 91.7% in cluttered scenes.\nThe demos below correspond to three representative settings: low speed, high speed, and high speed with distractors.", videos: 3, videoSources: [{ href: "videos/2026_01_dynamic_grasp/low_speed.mp4", title: "Low-Speed Dynamic Grasping", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed.mp4", title: "High-Speed Dynamic Grasping", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed_with_distractors.mp4", title: "High-Speed Grasping with Distractors", note: "", embed: true }] }
+        ]
+      }
+    };
+
+    const featuredProjects = {
+      zh: {
+        title: "RTC-Enabled Long-Horizon Bimanual Bin Manipulation",
+        subtitle: "基于 RTC 与异步推理的双臂料箱长时连续操作",
+        kind: "项目",
+        output: "暂无",
+        time: "2026.05 - 2026.06",
+        desc: "面向双臂料箱长时连续操作，将任务拆分为 7 个有序子任务，并实现 RTC hard-prefix 训练、45 Hz 异步推理与动作重锚定。结合双臂交接状态机和动作平滑优化，完整任务成功率由 53.3% 提升至 100%，并通过连续 3 小时运行测试。",
+        videoSources: [{ href: "videos/2026_07_liaoxiang/liaoxiang_1.mp4", title: "料箱连续运行演示", note: "", embed: true }]
+      },
+      en: {
+        title: "RTC-Enabled Long-Horizon Bimanual Bin Manipulation",
+        subtitle: "Long-horizon bimanual bin manipulation with RTC and asynchronous inference",
+        kind: "Project",
+        output: "None yet",
+        time: "2026.05 - 2026.06",
+        desc: "Structured a long-horizon bimanual bin task into seven ordered subtasks and implemented RTC hard-prefix training, 45 Hz asynchronous inference, and action re-anchoring. A handover state machine and smooth action optimization raised full-task success from 53.3% to 100%, with a separate three-hour continuous-operation test.",
+        videoSources: [{ href: "videos/2026_07_liaoxiang/liaoxiang_1.mp4", title: "Continuous Bin Operation Demo", note: "", embed: true }]
+      }
+    };
+
+    const internshipDescriptionOverrides = {
+      zh: {
+        "小米": "负责真实双臂操作中的 VLA 训练、策略后训练与连续部署，覆盖料箱长时连续运行、穿扎带自主恢复、多物体语言条件抓取及 RSS 2026 挑战赛。完成从数据构建、pi0.5 微调与 RTC 后训练，到异步推理调度和真机闭环评测的完整研发链路。",
+        "鹿明机器人": "参与 FastUMI 数据采集系统的算法迭代与真机部署，完成多模态轨迹处理，以及 ACT、Diffusion Policy、pi0 等策略的训练、微调和实机调试，支撑数据采集、模型训练与策略部署闭环。"
+      },
+      en: {
+        "Xiaomi": "Worked on VLA training, policy post-training, and continuous deployment for real-world bimanual manipulation, including long-horizon bin operation, autonomous cable-tie recovery, language-conditioned multi-object grasping, and the RSS 2026 challenge. Covered the full pipeline from dataset construction and pi0.5 fine-tuning to RTC training, asynchronous inference scheduling, and closed-loop real-robot evaluation.",
+        "Luming Robotics": "Contributed to FastUMI data-collection system iteration and real-robot deployment, including multimodal trajectory processing, training and fine-tuning ACT, Diffusion Policy, and pi0 policies, and real-robot debugging across the data-to-deployment loop."
+      }
+    };
+
+    const projectDescriptionOverrides = {
+      zh: {
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "在 ARX 双臂平台上构建穿扎带任务的交互数据闭环，使用 Meta Quest 采集示教，并回收成功、失败及人工纠正轨迹。基于价值模型进行优势条件化离线 RL 后训练，实现插入失败后的自主恢复；40 个不同初始位姿下，首次插入成功率为 77.5%，自主恢复后最终成功率达到 97.5%。",
+        "Post-Training for Robotics Challenge": "参加 RSS 2026 真实双臂操作后训练挑战赛，完成鼠标电池安装、汉诺塔和瓶盖旋紧三项任务的 VLA 后训练与真机评测。Single-Task Track Phase 1 官方排名第 7，三项任务成功率为 60% / 0% / 60%；后续同协议补测中汉诺塔成功率提升至 20%。",
+        "UCAG-P": "参与相机中心 VLA 框架 UCAG-P 研发，负责几何条件化动作转换模块，以及 Piper 真机部署与评测。面包抓取、抽屉打开和碗堆叠成功率达到 60% / 90% / 75%，优于相同设置下 pi0.5 的 20% / 85% / 65%。",
+        "VLA Multi-Object Grasping": "构建语言条件多物体抓取数据流水线，并设计区域-语言对比学习以减少整图特征带来的目标干扰。在 Piper 双臂平台上，37 类已见物体成功率由 43.6% 提升至 97.3%，20 类未见物体由 7.2% 提升至 64.8%。",
+        "SpeedACT": "在 FastTouch 机械臂平台上，针对多速度动态抓取中的策略冲突，设计速度条件化专家路由与非对称时空正则化的 DynaMoE 框架。在 5 个速度级、每个速度级对 40 个物体各测试 10 次（共 2,000 次）真机评测中，成功率为 92.4% / 96.8% / 97.8% / 94.5% / 88.2%；两个未见中间速度级分别达到 96.8% 和 94.5%。",
+        "MA-ACT": "在 SO100 机械臂平台上扩展 ACT，结合物体中心运动流与运动-视觉特征融合以建模目标运动。在每个速度 20 次试验的受控变速场景下，平均闭环抓取成功率为 100%；在每个速度 20 次试验的杂乱背景下，平均成功率为 91.7%。论文投稿至 TASE。",
+        "ADCT": "提出基于经验树的 action and detection chunking 方法，用于缓解连续多目标抓取的误差累积；ADCT 在单场景和多场景多目标抓取中分别达到 96% 和 91% 成功率，迁移至 Diffusion Policy 后分别为 89% 和 88%。"
+      },
+      en: {
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "Built an interactive data loop for cable-tie threading on an ARX bimanual robot using Meta Quest demonstrations plus successful, failed, and human-corrected trajectories. Value-guided offline RL enabled autonomous recovery after insertion failures, raising success from 77.5% on the first attempt to 97.5% after recovery across 40 initial poses.",
+        "Post-Training for Robotics Challenge": "Developed and evaluated VLA post-training for mouse battery installation, Tower of Hanoi, and bottle-cap tightening in the RSS 2026 real-world bimanual manipulation challenge. Ranked 7th in the official Phase 1 Single-Task Track; a later evaluation improved Tower of Hanoi success from 0% to 20%.",
+        "UCAG-P": "Contributed to the camera-centric VLA framework UCAG-P by implementing its geometry-conditioned action translator and leading Piper deployment and evaluation. Success reached 60% / 90% / 75% on bread pickup, drawer opening, and bowl stacking, versus 20% / 85% / 65% for pi0.5 under the same setup.",
+        "VLA Multi-Object Grasping": "Built a language-conditioned multi-object grasping pipeline and designed region-language contrastive learning to reduce whole-image target interference. On a Piper bimanual platform, success improved from 43.6% to 97.3% for 37 seen categories and from 7.2% to 64.8% for 20 unseen categories.",
+        "SpeedACT": "On a FastTouch robot arm, I developed DynaMoE, which combines velocity-conditioned expert routing and asymmetric spatiotemporal regularization to address policy conflicts in multi-speed dynamic grasping. Across five speed levels, with 10 real-robot trials for each of 40 objects at every level (2,000 trials total), success rates were 92.4% / 96.8% / 97.8% / 94.5% / 88.2%; the two held-out intermediate speed levels reached 96.8% and 94.5%.",
+        "MA-ACT": "On an SO100 robot arm, I extended ACT with object-centric motion flow and motion-vision feature fusion to model target movement. With 20 trials at each speed, mean closed-loop grasp success was 100% in controlled variable-speed settings and 91.7% in cluttered settings. The paper is under submission to TASE.",
+        "ADCT": "Proposed action and detection chunking based on experience trees to reduce accumulated error in sequential multi-target grasping. ADCT achieved 96% success in single-scene and 91% in multi-scene settings; when transferred to Diffusion Policy, success was 89% and 88%, respectively."
+      }
+    };
+
+    const projectLinks = {
+      "ADCT": [
+        { href: "https://ieeexplore.ieee.org/document/11576545", zh: "论文（IEEE Xplore）", en: "Paper (IEEE Xplore)" },
+        { href: "https://github.com/wbwwt/ADCT", zh: "代码（GitHub）", en: "Code (GitHub)" }
+      ]
+    };
+
+    const projectMetadataOverrides = {
+      zh: {
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": { time: "2026.05 - 2026.07" },
+        "VLA Multi-Object Grasping": { time: "2026.05 - 2026.07" },
+        "UCAG-P": { output: "AAAI \u5728\u6295" },
+        "SpeedACT": { output: "RAL Revise" },
+        "MA-ACT": { output: "TASE \u5728\u6295" },
+        "ADCT": { output: "RAL\u5df2\u5f55\u7528" }
+      },
+      en: {
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": { time: "2026.05 - 2026.07" },
+        "VLA Multi-Object Grasping": { time: "2026.05 - 2026.07" },
+        "UCAG-P": { output: "AAAI under submission" },
+        "SpeedACT": { output: "RAL Revise" },
+        "MA-ACT": { output: "Under submission to TASE" },
+        "ADCT": { output: "RAL published" }
+      }
+    };
+
+    const projectTitleOverrides = {
+      zh: {
+        "RTC-Enabled Long-Horizon Bimanual Bin Manipulation": "双臂料箱长时连续操作：基于 RTC 与异步推理的 VLA 部署优化",
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "双臂穿扎带自主恢复：基于价值模型的 VLA 后训练",
+        "VLA Multi-Object Grasping": "多物体语言条件抓取：基于区域-语言对齐的 VLA 泛化优化",
+        "Post-Training for Robotics Challenge": "RSS 2026 挑战赛真实双臂操作"
+      },
+      en: {}
+    };
+
+    const projectImageOverrides = {
+      zh: {
+        "SpeedACT": {
+          src: "images/dynamoe_architecture.png",
+          alt: "DynaMoE 论文架构图",
+          caption: "DynaMoE 架构：速度条件化专家路由与混合专家动作解码。"
+        },
+        "MA-ACT": {
+          src: "images/maact_architecture.png",
+          alt: "MA-ACT 论文架构图",
+          caption: "MA-ACT 架构：目标中心运动感知与运动-视觉特征融合。"
+        }
+      },
+      en: {
+        "SpeedACT": {
+          src: "images/dynamoe_architecture.png",
+          alt: "DynaMoE paper architecture",
+          caption: "DynaMoE: velocity-conditioned expert routing and mixture-of-experts action decoding."
+        },
+        "MA-ACT": {
+          src: "images/maact_architecture.png",
+          alt: "MA-ACT paper architecture",
+          caption: "MA-ACT: target-centric motion perception and motion-visual feature fusion."
+        }
+      }
+    };
+
+    function entryHTML(item, lang) {
+      const descHTML = (item.desc || "").split("\n").map(part => `<p>${part}</p>`).join("");
+      const links = projectLinks[item.title] || [];
+      const linksHTML = links.length ? `<div class="project-links">${links.map(link => `<a class="project-link" href="${link.href}" target="_blank" rel="noopener noreferrer">${link[lang]} ↗</a>`).join("")}</div>` : "";
+      const localizedTitle = projectTitleOverrides[lang][item.title];
+      const displayTitle = localizedTitle || (item.title === "SpeedACT"
+        ? "DynaMoE"
+        : item.title);
+      const subtitleHTML = localizedTitle ? "" : `<div class="publine">${item.subtitle}</div>`;
+      const demoAnchors = {
+        "RTC-Enabled Long-Horizon Bimanual Bin Manipulation": "bin-long-horizon",
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "cable-tie-post-training",
+        "VLA Multi-Object Grasping": "multi-object-grasping",
+        "SpeedACT": "dynamoe-demo",
+        "MA-ACT": "ma-act-demo"
+      };
+      const anchor = demoAnchors[item.title] || "";
+      const imageHTML = item.image ? `
+          <figure class="project-figure">
+            <img src="${item.image.src}" alt="${item.image.alt}">
+            ${item.image.caption ? `<figcaption class="project-caption">${item.image.caption}</figcaption>` : ""}
+          </figure>
+      ` : "";
+      if (item.videoGroups) {
+        const groups = item.videoGroups.map(group => `
+        <div class="video-group">
+          <div class="video-group-label">${group.label}</div>
+          <div class="video-strip">
+            ${group.items.map(source => `
+              <div class="video-card">
+                <div class="video-meta">
+                  <span class="video-title">${source.title}</span>
+                  ${source.note ? `<span class="video-note">${source.note}</span>` : ""}
+                </div>
+                <video class="video-player" controls preload="metadata">
+                  <source src="${source.href}" type="video/mp4">
+                </video>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+        return `
+        <article class="entry project-entry"${anchor ? ` id="${anchor}"` : ""}>
+          <div class="head">
+            <div>
+              <h3 class="title">${displayTitle}</h3>
+              ${subtitleHTML}
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <div class="badges">
+            <span class="badge">${item.kind}</span>
+            ${item.output && item.output !== copy[lang].outputNone ? `<span class="badge">${copy[lang].outputLabel}: ${item.output}</span>` : ""}
+          </div>
+          <div class="desc">${descHTML}</div>
+          ${linksHTML}
+          ${imageHTML}
+          <div class="video-groups">${groups}</div>
+        </article>
+      `;
+      }
+      const sources = item.videoSources || [];
+      const count = sources.length || item.videos || 0;
+      const videos = Array.from({ length: count }, (_, i) => {
+        const source = sources[i];
+        const href = source ? source.href : "#";
+        const title = source ? source.title : copy[lang].videoPlaceholder;
+        const note = source ? source.note : item.title;
+        if (source && source.placeholder) {
+          return `
+        <div class="video video-placeholder" role="status">
+          <span>
+            <span class="video-kicker">${copy[lang].videoLabel}</span>
+            <span class="video-title">${title}</span>
+            ${note ? `<span class="video-note">${note}</span>` : ""}
+          </span>
+        </div>
+      `;
+        }
+        if (source && source.embed) {
+          return `
+        <div class="video-card">
+          <div class="video-meta">
+            <span class="video-title">${title}</span>
+            ${note ? `<span class="video-note">${note}</span>` : ""}
+          </div>
+          <video class="video-player" controls preload="metadata">
+            <source src="${href}" type="video/mp4">
+          </video>
+        </div>
+      `;
+        }
+        return `
+        <a class="video" href="${href}">
+          <span class="video-kicker">${copy[lang].videoLabel}</span>
+          <span class="video-title">${title}</span>
+          ${note ? `<span class="video-note">${note}</span>` : ""}
+        </a>
+      `;
+      }).join("");
+      const videosHTML = videos ? `<div class="videos">${videos}</div>` : "";
+      return `
+        <article class="entry project-entry"${anchor ? ` id="${anchor}"` : ""}>
+          <div class="head">
+            <div>
+              <h3 class="title">${displayTitle}</h3>
+              ${subtitleHTML}
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <div class="badges">
+            <span class="badge">${item.kind}</span>
+            ${item.output && item.output !== copy[lang].outputNone ? `<span class="badge">${copy[lang].outputLabel}: ${item.output}</span>` : ""}
+          </div>
+          <div class="desc">${descHTML}</div>
+          ${linksHTML}
+          ${imageHTML}
+          ${videosHTML}
+        </article>
+      `;
+    }
+
+    function internshipHTML(item) {
+      return `
+        <article class="entry">
+          <div class="head">
+            <div>
+              <h3 class="title">${item.company}</h3>
+              <div class="publine">${item.role}</div>
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <p class="desc">${item.desc}</p>
+        </article>
+      `;
+    }
+
+    function publicationHTML(item, index) {
+      return `
+        <article class="entry publication-entry">
+          <span class="publication-index">${String(index + 1).padStart(2, "0")}</span>
+          <div>
+            <h3 class="title">${item.title}</h3>
+            <p class="publine">${item.line}</p>
+          </div>
+        </article>
+      `;
+    }
+
+    function setLang(lang) {
+      const t = copy[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelector('[data-lang="zh"]').textContent = "中文";
+      document.getElementById("label-email").textContent = t.emailLabel;
+      document.getElementById("name").textContent = t.name;
+      document.getElementById("lead").textContent = t.lead;
+      document.getElementById("nav-about").textContent = t.navAbout;
+      document.getElementById("nav-projects").textContent = t.navProjects;
+      document.getElementById("nav-internships").textContent = t.navInternships;
+      document.getElementById("nav-work").textContent = t.navWork;
+      document.getElementById("nav-publications").textContent = t.navPublications;
+      document.getElementById("about-title").textContent = t.aboutTitle;
+      document.getElementById("about-1").textContent = t.about1;
+      document.getElementById("about-2").textContent = t.about2;
+      document.getElementById("about-3").textContent = t.about3;
+      document.getElementById("projects-title").textContent = t.projectsTitle;
+      document.getElementById("projects-intro").textContent = t.projectsIntro;
+      document.getElementById("internships-title").textContent = t.internshipsTitle;
+      document.getElementById("work-title").textContent = t.workTitle;
+      document.getElementById("publications-title").textContent = t.publicationsTitle;
+      document.getElementById("foot").textContent = t.foot;
+      const projectOrder = [
+        "RTC-Enabled Long-Horizon Bimanual Bin Manipulation",
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading",
+        "VLA Multi-Object Grasping",
+        "Post-Training for Robotics Challenge",
+        "UCAG-P",
+        "SpeedACT",
+        "MA-ACT",
+        "ADCT"
+      ];
+      const projects = [featuredProjects[lang], ...t.projects.map(item => ({
+        ...item,
+        ...(projectMetadataOverrides[lang][item.title] || {}),
+        desc: projectDescriptionOverrides[lang][item.title] || item.desc,
+        image: projectImageOverrides[lang][item.title] || item.image
+      }))].sort((a, b) => projectOrder.indexOf(a.title) - projectOrder.indexOf(b.title));
+      document.getElementById("project-list").innerHTML = projects.map(item => entryHTML(item, lang)).join("");
+      const experiences = t.internships.map(item => ({
+        ...item,
+        desc: internshipDescriptionOverrides[lang][item.company] || item.desc
+      }));
+      document.getElementById("internship-list").innerHTML = experiences.slice(0, 2).map(internshipHTML).join("");
+      document.getElementById("work-list").innerHTML = experiences.slice(2).map(internshipHTML).join("");
+      document.getElementById("publication-list").innerHTML = t.publications.map(publicationHTML).join("");
+      document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+
+    const navLinks = [...document.querySelectorAll(".nav a")];
+    const navSections = navLinks.map(link => document.querySelector(link.getAttribute("href")));
+    function updateActiveNav() {
+      let activeIndex = 0;
+      navSections.forEach((section, index) => {
+        if (section && section.getBoundingClientRect().top <= 180) activeIndex = index;
+      });
+      navLinks.forEach((link, index) => link.classList.toggle("active", index === activeIndex));
+    }
+    window.addEventListener("scroll", updateActiveNav, { passive: true });
+
+    setLang("zh");
+    updateActiveNav();
+  </script>
+</body>
+</html>

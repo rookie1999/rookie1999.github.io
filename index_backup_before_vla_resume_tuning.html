@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Guozhi Zhan</title>
+  <style>
+    :root{--bg:#f6f6f1;--card:#fff;--fg:#161616;--muted:#6b6b6b;--line:#deded7;--soft:#f0efe9;--accent:#111;--font-body:"Palatino Linotype","Book Antiqua","Songti SC","STSong","SimSun",serif;--font-ui:"Palatino Linotype","Book Antiqua","Noto Serif SC","Source Han Serif SC","Songti SC","STSong",serif;--font-number:"Georgia","Times New Roman","Palatino Linotype",serif}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.75 var(--font-body);font-variant-numeric:lining-nums;color-adjust:exact;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}a{color:inherit;text-decoration:none}a:hover{text-decoration:underline}button{font:inherit}img{max-width:100%;display:block}.wrap{width:min(980px,92vw);margin:0 auto;padding:32px 0 72px}.top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:10px 0 30px;border-bottom:1px solid var(--line)}.name{margin:0;font-size:clamp(34px,6vw,56px);font-weight:600;letter-spacing:-.03em;line-height:1.02}.lead{max-width:760px;margin:12px 0 0;color:var(--muted);font-size:18px}.lang{display:flex;gap:8px;flex-shrink:0}.lang button{padding:7px 12px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:999px;cursor:pointer}.lang button.active{background:var(--accent);border-color:var(--accent);color:#fff}.meta,.nav,.focus-list{display:flex;flex-wrap:wrap;gap:10px 18px}.meta{margin-top:18px;color:var(--muted);font-size:15px;font-family:var(--font-ui)}.meta a,.time,.badge,.video-note{font-family:var(--font-number);font-variant-numeric:lining-nums}.nav{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}.nav a{font-size:15px;color:#333;font-weight:600;font-family:var(--font-ui)}main{display:grid;gap:46px;margin-top:34px}.sec h2{margin:0 0 14px;font-size:28px;letter-spacing:-.02em}.sec-intro{margin:0 0 22px;color:var(--muted)}.sec-intro:empty,.foot:empty{display:none}.about{display:grid;gap:12px}.about p{margin:0}.focus{display:grid;gap:14px}.focus-list{gap:12px}.focus-item{padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:var(--card);font-size:15px;line-height:1.6}.list{display:grid;gap:26px}.entry{padding-top:22px;border-top:1px solid var(--line);min-width:0}.entry:first-child{padding-top:0;border-top:0}.head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.title{margin:0;font-size:23px;line-height:1.18}.time{color:#2d2d2d;white-space:nowrap;font-size:16px;font-weight:600;padding-top:2px}.badges{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 14px}.badge{padding:4px 10px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-size:12px;color:#444}.desc{margin:0;max-width:none}.desc p{margin:0 0 10px}.desc p:last-child{margin-bottom:0}.videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:18px}.video-groups{display:grid;gap:18px;margin-top:18px;min-width:0}.video-group{min-width:0}.video-group-label{font-size:13px;font-weight:600;letter-spacing:.05em;color:#333;text-transform:uppercase}.video-group-note{margin:6px 0 10px;color:var(--muted);font-size:14px;line-height:1.6}.video-strip{display:flex;gap:14px;overflow-x:auto;overflow-y:hidden;width:100%;max-width:100%;padding:0 0 8px;scrollbar-width:thin}.video-strip::-webkit-scrollbar{height:10px}.video-strip::-webkit-scrollbar-thumb{background:#c8c5bc;border-radius:999px}.video-strip::-webkit-scrollbar-track{background:#ece9df;border-radius:999px}.video-strip .video-card{flex:0 0 min(420px,78vw)}.video,.video-card{display:block;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--card);min-height:112px}.video-card{padding:12px}.video-player{width:100%;display:block;border-radius:10px;background:#000;aspect-ratio:16/9}.video-meta{padding:0 4px 2px}.video-kicker{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.video-title{display:block;margin-top:12px;font-size:18px;line-height:1.25}.video-card .video-title{margin:0 0 10px;font-size:16px}.video-note{display:block;margin-top:6px;font-size:13px;color:var(--muted)}.publine{margin:8px 0 0;color:var(--muted)}.foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}@media (max-width:720px){.top,.head{flex-direction:column}.lead{font-size:17px}.time{white-space:normal;padding-top:0}.sec h2{font-size:24px}.video-strip .video-card{flex-basis:86vw}.focus-list{display:grid}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <h1 class="name" id="name"></h1>
+        <p class="lead" id="lead"></p>
+        <div class="meta">
+          <span><span id="label-email"></span>: <a href="mailto:benson_zhan@tongji.edu.cn">benson_zhan@tongji.edu.cn</a></span>
+        </div>
+        <nav class="nav">
+          <a href="#about" id="nav-about"></a>
+          <a href="#focus" id="nav-focus"></a>
+          <a href="#internships" id="nav-internships"></a>
+          <a href="#work" id="nav-work"></a>
+          <a href="#projects" id="nav-projects"></a>
+          <a href="#publications" id="nav-publications"></a>
+        </nav>
+      </div>
+      <div class="lang">
+        <button type="button" data-lang="zh" class="active">中文</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="sec" id="about">
+        <h2 id="about-title"></h2>
+        <div class="about">
+          <p id="about-1"></p>
+          <p id="about-2"></p>
+          <p id="about-3"></p>
+        </div>
+      </section>
+
+      <section class="sec" id="focus">
+        <h2 id="focus-title"></h2>
+        <p class="sec-intro" id="focus-intro"></p>
+        <div class="focus-list" id="focus-list"></div>
+      </section>
+
+      <section class="sec" id="internships">
+        <h2 id="internships-title"></h2>
+        <div class="list" id="internship-list"></div>
+      </section>
+
+      <section class="sec" id="work">
+        <h2 id="work-title"></h2>
+        <div class="list" id="work-list"></div>
+      </section>
+
+      <section class="sec" id="projects">
+        <h2 id="projects-title"></h2>
+        <p class="sec-intro" id="projects-intro"></p>
+        <div class="list" id="project-list"></div>
+      </section>
+
+      <section class="sec" id="publications">
+        <h2 id="publications-title"></h2>
+        <div class="list" id="publication-list"></div>
+      </section>
+    </main>
+
+    <footer class="foot" id="foot"></footer>
+  </div>
+
+  <script>
+    const copy = {
+      zh: {
+        name: "詹国志 / Guozhi Zhan",
+        lead: "同济大学 2027 届电子信息硕士，聚焦具身智能算法，目标岗位偏向 VLA 与 VLA+RL 后训练。",
+        emailLabel: "邮箱",
+        navAbout: "关于我",
+        navFocus: "岗位匹配",
+        navInternships: "实习经历",
+        navProjects: "代表项目",
+        navPublications: "研究产出",
+        aboutTitle: "关于我",
+        about1: "我是同济大学电子信息硕士，2027 届毕业生，求职方向为具身智能算法岗，尤其关注 VLA 和 VLA+RL 后训练。",
+        about2: "本科为华东理工大学与德国吕贝克应用技术大学双学士项目，分别获得电气工程及其自动化与 Information Technology 学位。",
+        about3: "经历覆盖机器人感知、数据构建、策略训练与真机部署，希望在校招中寻找能继续做模型与工程闭环的具身智能团队。",
+        focusTitle: "岗位匹配",
+        focusIntro: "",
+        focusItems: [
+          "做过 VLA 相关数据构建、instruction augmentation、训练流程搭建与真机验证",
+          "有 VLA+RL 后训练经验，理解长时序任务中的稳定性、恢复与纠错问题",
+          "能独立推进从数据到模型、再到部署与实机闭环的实验链路",
+          "除算法外，也有 C# 后端开发与工程协作经验，适合做偏落地的研发岗"
+        ],
+        internshipsTitle: "实习经历",
+        projectsTitle: "代表项目",
+        projectsIntro: "这里保留与 VLA、VLA+RL 后训练以及动态抓取相关的代表项目，方便招聘快速判断我的技术重点。",
+        publicationsTitle: "研究产出",
+        foot: "",
+        kindResearch: "科研",
+        kindProject: "项目",
+        outputLabel: "产出",
+        outputNone: "暂无",
+        videoLabel: "视频",
+        videoPlaceholder: "占位",
+        internships: [
+          { company: "小米", role: "具身智能算法实习生", time: "2026.05 - 2026.08", desc: "围绕 VLA 与 RL 后训练开展具身操作算法研发，负责多物体语言条件抓取与长时序穿戴任务的方案设计、数据构建、模型训练及真机验证，并推进在线与离线后训练策略落地到真实机器人任务。" },
+          { company: "鹿明机器人", role: "具身智能算法实习生", time: "2026.01 - 2026.03", desc: "参与 FastUMI 数据采集系统迭代、策略训练微调与真机部署验证，围绕 ACT、Diffusion Policy、Pi0 等模仿学习策略开展 UMI 数据处理、模型训练和实机测试，并在此基础上完成多速度动态抓取项目 SpeedACT，形成第一作者论文成果。" },
+          { company: "恩富软件（Infor）", role: "后端研发工程师", time: "2021.08 - 2023.07", desc: "在外企企业软件环境下参与核心 ERP 模块开发与维护，负责部分存储过程向 C# 服务迁移与性能优化。" }
+        ],
+        publications: [
+          { title: "SpeedACT: Kinematic-Guided Imitation Learning for Multi-Speed Dynamic Grasping", line: "第一作者，RAL revise / 在投" },
+          { title: "Action and Detection Chunking with Transformers based on Experience Tree", line: "第二作者，RAL" },
+          { title: "Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping", line: "第一作者，在投" }
+        ],
+        projects: [
+          { title: "Online RL Post-Training for Dressing Tasks", subtitle: "穿扎带任务的 VLA+RL 后训练", kind: "项目", output: "暂无", time: "2026.06 - 2026.07", desc: "面向长时序穿戴任务，负责在线 RL 后训练方案设计、数据回放与实机验证。\n设计 critic 引导的 local action editing，在尽量保留 VLA 先验的前提下提升任务恢复与纠错能力。\n任务成功率从 35% 提升至 78%。", videoGroups: [{ label: "Real-Robot Demo", items: [{ href: "videos/2026_06_zhadai/2026_07_zhadai.mp4", title: "穿扎带任务实机演示", note: "展示长时序操作中的纠错与恢复能力", embed: true }] }] },
+          { title: "VLA Multi-Object Grasping", subtitle: "VLA 语言条件多物体抓取", kind: "项目", output: "暂无", time: "2026.05 - 2026.06", desc: "基于 AgiBot、RoboChallenge v1/v2 及自采数据，按松灵机械臂 IK 轨迹自动提取抓取片段，覆盖 approach、夹爪闭合与提起阶段，并定位开始帧、闭合帧和结束帧。\n对关键帧使用 Grounding DINO 生成抓取目标检测框，再通过 VLM 预测检测框，将目标位置信息注入训练过程而不改动模型输入形式，测试阶段也无需额外检测头。\n结合大语言模型为每类物体生成约 50 条多样化 prompt，覆盖基础指令、同义词替换、颜色描述、功能描述和句式改写，并设计双粒度对比学习辅助损失，最终将不同物体识别正确率从 45% 提升到 95%，同种物体不同颜色区分正确率从 30% 提升到 85%；同时模型可以根据 prompt 中更细粒度的属性与语义描述，在多物体场景中定位并抓取未见过的 OOD 物体。", videoGroups: [{ label: "测试场景泛化 / 三色物体块", note: "测试场景与训练时出现的场景不同；数据集中出现过相关单体，但未以当前同时出现方式出现。", items: [{ href: "videos/2026_05_grasp/orange_block.mp4", title: "pick up orange block", note: "", embed: true }, { href: "videos/2026_05_grasp/red_block.mp4", title: "pick up red block", note: "", embed: true }, { href: "videos/2026_05_grasp/blue_block.mp4", title: "pick up blue block", note: "", embed: true }] }, { label: "测试场景泛化 / 开放数据集物体", note: "测试场景与训练时出现的场景不同；bell、bowl、eraser、plastic bottle、stapler 等单体在数据集中出现过，但没有当前同时出现配置。", items: [{ href: "videos/2026_05_grasp/bell.mp4", title: "pick up bell", note: "", embed: true }, { href: "videos/2026_05_grasp/bowl.mp4", title: "pick up bowl", note: "", embed: true }, { href: "videos/2026_05_grasp/eraser.mp4", title: "pick up eraser", note: "", embed: true }, { href: "videos/2026_05_grasp/plastic_bottle.mp4", title: "pick up plastic bottle", note: "", embed: true }, { href: "videos/2026_05_grasp/stapler.mp4", title: "pick up stapler", note: "", embed: true }] }, { label: "OOD Prompt", items: [{ href: "videos/2026_05_grasp/pear.mp4", title: "\"pick up yellow pear\"", note: "展示模型可根据属性描述在多物体场景中定位并抓取未见 OOD 物体", embed: true }] }] },
+          { title: "SpeedACT", subtitle: "基于运动学引导的多速度动态抓取", kind: "科研", output: "RAL revise / 在投", time: "2026.01 - 2026.03", desc: "面向传送带动态抓取中“同一策略难以同时兼顾低速精度与高速抢抓”的问题，提出速度条件化模仿学习框架 DynaMoE，用显式速度先验驱动策略在不同运动学模式间切换。\n方法上在 ACT 的 CVAE 框架中引入显式速度先验：编码端将速度嵌入作为全局运动学锚点，解码端采用运动学引导的 MoE 架构按不同速度分配专家网络；同时设计 asymmetric spatiotemporal regularization，其中空间约束权重随速度升高而增强，而一阶动作差分对齐项在所有速度下统一施加，用于提升时序同步性。\n基于 40 个物体、每个物体在 Low / Medium / High 三种训练速度下各 50 条演示轨迹构建真实动态抓取数据集，模型在 Low / Low-Med / Medium / Med-High / High 五档速度下分别达到 92.4% / 96.8% / 97.8% / 94.5% / 88.2%，显著优于 ACT、MAE-ACT 和 MoE-ACT，并形成第一作者 RAL revise 稿件。", videoGroups: [{ label: "训练集速度", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_0.mp4", title: "低速", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_4.mp4", title: "高速", note: "", embed: true }] }, { label: "未见速度", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_1.mp4", title: "低中速", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_3.mp4", title: "中高速", note: "", embed: true }] }] },
+          { title: "MA-ACT", subtitle: "面向动态抓取的运动感知模仿学习框架", kind: "科研", output: "在投", time: "2025.03 - 2025.10", desc: "针对现有视觉模仿学习策略在多速度动态抓取中容易依赖伪视觉相关性、难以稳定建模目标运动学的问题，提出 Motion-Aware ACT（MA-ACT）。\n方法上仅使用单个 top-view 顶部相机作为输入：一条视觉分支对当前观测图像进行全局视觉特征编码；另一条运动分支先通过 YOLO 提取抓取目标位置，再利用 PWC-Net 计算前后两帧光流，并结合检测框提取目标区域的光流特征作为物体级运动信息。\n随后通过 Motion-Contextualized Visual Fusion（MCVF）模块将物体运动信息注入全局视觉特征，再由 ACT 解码器对融合后的表征进行动作解码，输出抓取动作序列。基于 210 条真实演示数据（Low / Medium / High 分别为 50 / 70 / 90 条），模型在受控场景下平均成功率最高达到 100%，在带静态干扰物的 cluttered 场景下仍达到 91.7%，较主要视觉模仿学习基线提升 25 个百分点。", videoSources: [{ href: "videos/2026_01_dynamic_grasp/low_speed.mp4", title: "低速动态抓取", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed.mp4", title: "高速动态抓取", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed_with_distractors.mp4", title: "高速干扰场景抓取", note: "", embed: true }] }
+        ]
+      },
+      en: {
+        name: "Guozhi Zhan",
+        lead: "2027 M.S. candidate at Tongji University targeting embodied intelligence roles, with a focus on VLA and VLA plus RL post-training.",
+        emailLabel: "Email",
+        navAbout: "About",
+        navFocus: "Fit",
+        navInternships: "Internships",
+        navProjects: "Selected Projects",
+        navPublications: "Research Output",
+        aboutTitle: "About Me",
+        about1: "I am a 2027 M.S. candidate in Electronic Information at Tongji University, seeking embodied intelligence algorithm roles with an emphasis on VLA and VLA plus RL post-training.",
+        about2: "I received dual bachelor's degrees through the joint program of East China University of Science and Technology and Technical University of Applied Sciences Luebeck, in Electrical Engineering and Automation and in Information Technology.",
+        about3: "My experience spans robot perception, dataset construction, policy training, and real-robot deployment, and I want to keep working in teams that close the loop from model design to hardware validation.",
+        focusTitle: "Role Fit",
+        focusIntro: "",
+        focusItems: [
+          "Built VLA-oriented data pipelines, instruction augmentation workflows, training setups, and real-robot validation loops",
+          "Hands-on experience with VLA plus RL post-training for long-horizon tasks, especially recovery and correction under execution drift",
+          "Able to push work end to end from data and models to deployment and hardware-side debugging",
+          "Also bring prior C# backend and engineering collaboration experience for production-minded research teams"
+        ],
+        internshipsTitle: "Internships",
+        projectsTitle: "Selected Projects",
+        projectsIntro: "These projects are the strongest signal for VLA, VLA plus RL post-training, and dynamic grasping roles in campus recruiting.",
+        publicationsTitle: "Research Output",
+        foot: "",
+        kindResearch: "Research",
+        kindProject: "Project",
+        outputLabel: "Output",
+        outputNone: "None yet",
+        videoLabel: "Video",
+        videoPlaceholder: "Placeholder",
+        internships: [
+          { company: "Xiaomi", role: "Embodied Intelligence Algorithm Intern", time: "2026.05 - 2026.08", desc: "Worked on embodied manipulation algorithms around VLA and RL post-training, covering solution design, data construction, model training, and real-robot validation for language-conditioned multi-object grasping and long-horizon dressing tasks, and helped bring both online and offline post-training strategies onto real robot tasks." },
+          { company: "Luming Robotics", role: "Embodied Intelligence Algorithm Intern", time: "2026.01 - 2026.03", desc: "Worked on FastUMI pipeline iteration, policy training and tuning, and real-robot deployment and validation. Built UMI data processing, model training, and hardware-side testing workflows around ACT, Diffusion Policy, and Pi0-style imitation learning policies, and completed the multi-speed dynamic grasping project SpeedACT, which led to a first-author paper outcome." },
+          { company: "Infor", role: "Backend R&D Engineer", time: "2021.08 - 2023.07", desc: "Worked in an international enterprise software environment on core ERP development, C# service migration, and performance optimization." }
+        ],
+        publications: [
+          { title: "SpeedACT: Kinematic-Guided Imitation Learning for Multi-Speed Dynamic Grasping", line: "First author, RAL revise / under submission" },
+          { title: "Action and Detection Chunking with Transformers based on Experience Tree", line: "Second author, RAL" },
+          { title: "Motion-Aware Imitation Learning for Robust Multi-Speed Dynamic Grasping", line: "First author, under submission" }
+        ],
+        projects: [
+          { title: "Online RL Post-Training for Dressing Tasks", subtitle: "VLA plus RL post-training for dressing tasks", kind: "Project", output: "None yet", time: "2026.06 - 2026.07", desc: "Designed the online RL post-training workflow and real-robot validation loop for a long-horizon dressing task.\nBuilt a critic-guided local action editing strategy that improves correction and recovery while preserving VLA priors.\nRaised task success from 35% to 78%.", videoGroups: [{ label: "Real-Robot Demo", items: [{ href: "videos/2026_06_zhadai/2026_07_zhadai.mp4", title: "Real-Robot Dressing Demo", note: "Highlights recovery and correction during long-horizon execution", embed: true }] }] },
+          { title: "VLA Multi-Object Grasping", subtitle: "Language-conditioned multi-object grasping with VLA", kind: "Project", output: "None yet", time: "2026.05 - 2026.06", desc: "Built the training set from AgiBot, RoboChallenge v1/v2, and self-collected data by using Songling arm IK trajectories to extract grasp segments covering approach, gripper close, and lift, then locating the start, close, and end frames.\nUsed Grounding DINO on key frames to produce target boxes, and trained the VLM to predict boxes so object location information is injected during training without changing the model input format or requiring a detection head at test time.\nGenerated about 50 prompts per object with an LLM, covering base commands, synonym swaps, color descriptions, functional descriptions, and paraphrased sentence forms, then added a bi-granularity contrastive loss that raised different-object accuracy from 45% to 95% and same-object different-color accuracy from 30% to 85%; the model can also use fine-grained prompt descriptions to identify and grasp unseen OOD objects among multiple candidates.", videoGroups: [{ label: "Test-Scene Generalization / Colored Blocks", note: "The evaluation scene differs from the scene layouts seen during training; relevant single objects appear in the data, but not in this joint layout.", items: [{ href: "videos/2026_05_grasp/orange_block.mp4", title: "pick up orange block", note: "", embed: true }, { href: "videos/2026_05_grasp/red_block.mp4", title: "pick up red block", note: "", embed: true }, { href: "videos/2026_05_grasp/blue_block.mp4", title: "pick up blue block", note: "", embed: true }] }, { label: "Test-Scene Generalization / Open-Dataset Objects", note: "The evaluation scene differs from the scene layouts seen during training; bell, bowl, eraser, plastic bottle, and stapler appear as single objects in the data, but not in the same simultaneous arrangement.", items: [{ href: "videos/2026_05_grasp/bell.mp4", title: "pick up bell", note: "", embed: true }, { href: "videos/2026_05_grasp/bowl.mp4", title: "pick up bowl", note: "", embed: true }, { href: "videos/2026_05_grasp/eraser.mp4", title: "pick up eraser", note: "", embed: true }, { href: "videos/2026_05_grasp/plastic_bottle.mp4", title: "pick up plastic bottle", note: "", embed: true }, { href: "videos/2026_05_grasp/stapler.mp4", title: "pick up stapler", note: "", embed: true }] }, { label: "OOD Prompt", items: [{ href: "videos/2026_05_grasp/pear.mp4", title: "\"pick up yellow pear\"", note: "Shows the model can use attribute-level prompt descriptions to localize and grasp an unseen OOD object in a multi-object scene", embed: true }] }] },
+          { title: "SpeedACT", subtitle: "Kinematic-guided imitation learning for multi-speed dynamic grasping", kind: "Research", output: "RAL revise / under submission", time: "2026.01 - 2026.03", desc: "Addressed the core failure mode of conveyor-belt dynamic grasping, where a single policy struggles to balance low-speed precision with high-speed interception, by proposing DynaMoE, a velocity-conditioned imitation learning framework with an explicit speed prior.\nThe method extends ACT's CVAE backbone with explicit velocity conditioning: the encoder uses a speed embedding as a global kinematic anchor, the decoder adopts a kinematic-guided MoE architecture to route tokens across speed-specific experts, and an asymmetric spatiotemporal regularization term applies stronger spatial supervision as speed increases while enforcing first-order action-difference alignment across all speed regimes.\nBuilt the real-world dataset over 40 objects with 50 demonstration trajectories per object at each of the three training speeds: Low, Medium, and High. The method achieved 92.4% / 96.8% / 97.8% / 94.5% / 88.2% success across Low / Low-Med / Medium / Med-High / High, substantially outperforming ACT, MAE-ACT, and MoE-ACT, and produced a first-author RAL revise manuscript.", videoGroups: [{ label: "Training Speeds", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_0.mp4", title: "Low Speed", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_4.mp4", title: "High Speed", note: "", embed: true }] }, { label: "Held-out Speeds", items: [{ href: "videos/2026_03_dynamic_grasp/speeds/speed_1.mp4", title: "Low-Medium Speed", note: "", embed: true }, { href: "videos/2026_03_dynamic_grasp/speeds/speed_3.mp4", title: "Medium-High Speed", note: "", embed: true }] }] },
+          { title: "MA-ACT", subtitle: "Motion-aware imitation learning for dynamic grasping", kind: "Research", output: "Under submission", time: "2025.03 - 2025.10", desc: "Proposed Motion-Aware ACT (MA-ACT) for multi-speed dynamic grasping, targeting the failure mode where visuomotor policies overfit spurious visual correlations instead of learning stable object kinematics.\nThe model uses only a single top-view camera as input: a visual branch encodes global image features from the current observation, while a motion branch uses YOLO to localize the grasp target, applies PWC-Net to estimate optical flow between consecutive frames, and extracts flow features inside the detected box as object-centric motion cues.\nThese motion cues are fused into the global visual representation through Motion-Contextualized Visual Fusion (MCVF), after which the ACT decoder generates the action sequence from the fused features. Using 210 real demonstrations across Low / Medium / High speeds (50 / 70 / 90), the model reached up to 100% average success in the controlled setting and 91.7% in a cluttered setting with static distractors, outperforming the primary visuomotor baseline by 25 percentage points.", videoSources: [{ href: "videos/2026_01_dynamic_grasp/low_speed.mp4", title: "Low-Speed Dynamic Grasping", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed.mp4", title: "High-Speed Dynamic Grasping", note: "", embed: true }, { href: "videos/2026_01_dynamic_grasp/high_speed_with_distractors.mp4", title: "High-Speed Grasping with Distractors", note: "", embed: true }] }
+        ]
+      }
+    };
+
+    function entryHTML(item, lang) {
+      const descHTML = (item.desc || "").split("\n").map(part => `<p>${part}</p>`).join("");
+      if (item.videoGroups) {
+        const groups = item.videoGroups.map(group => `
+        <div class="video-group">
+          <div class="video-group-label">${group.label}</div>
+          ${group.note ? `<div class="video-group-note">${group.note}</div>` : ""}
+          <div class="video-strip">
+            ${group.items.map(source => `
+              <div class="video-card">
+                <div class="video-meta">
+                  <span class="video-title">${source.title}</span>
+                  ${source.note ? `<span class="video-note">${source.note}</span>` : ""}
+                </div>
+                <video class="video-player" controls preload="metadata">
+                  <source src="${source.href}" type="video/mp4">
+                </video>
+              </div>
+            `).join("")}
+          </div>
+        </div>
+      `).join("");
+        return `
+        <article class="entry">
+          <div class="head">
+            <div>
+              <h3 class="title">${item.title}</h3>
+              <div class="publine">${item.subtitle}</div>
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <div class="badges">
+            <span class="badge">${item.kind}</span>
+            ${item.output && item.output !== copy[lang].outputNone ? `<span class="badge">${copy[lang].outputLabel}: ${item.output}</span>` : ""}
+          </div>
+          <div class="desc">${descHTML}</div>
+          <div class="video-groups">${groups}</div>
+        </article>
+      `;
+      }
+      const sources = item.videoSources || [];
+      const count = sources.length || item.videos || 0;
+      const videos = Array.from({ length: count }, (_, i) => {
+        const source = sources[i];
+        const href = source ? source.href : "#";
+        const title = source ? source.title : copy[lang].videoPlaceholder;
+        const note = source ? source.note : item.title;
+        if (source && source.embed) {
+          return `
+        <div class="video-card">
+          <div class="video-meta">
+            <span class="video-title">${title}</span>
+            ${note ? `<span class="video-note">${note}</span>` : ""}
+          </div>
+          <video class="video-player" controls preload="metadata">
+            <source src="${href}" type="video/mp4">
+          </video>
+        </div>
+      `;
+        }
+        return `
+        <a class="video" href="${href}">
+          <span class="video-kicker">${copy[lang].videoLabel}</span>
+          <span class="video-title">${title}</span>
+          ${note ? `<span class="video-note">${note}</span>` : ""}
+        </a>
+      `;
+      }).join("");
+      return `
+        <article class="entry">
+          <div class="head">
+            <div>
+              <h3 class="title">${item.title}</h3>
+              <div class="publine">${item.subtitle}</div>
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <div class="badges">
+            <span class="badge">${item.kind}</span>
+            ${item.output && item.output !== copy[lang].outputNone ? `<span class="badge">${copy[lang].outputLabel}: ${item.output}</span>` : ""}
+          </div>
+          <div class="desc">${descHTML}</div>
+          <div class="videos">${videos}</div>
+        </article>
+      `;
+    }
+
+    function internshipHTML(item) {
+      return `
+        <article class="entry">
+          <div class="head">
+            <div>
+              <h3 class="title">${item.company}</h3>
+              <div class="publine">${item.role}</div>
+            </div>
+            <div class="time">${item.time}</div>
+          </div>
+          <p class="desc">${item.desc}</p>
+        </article>
+      `;
+    }
+
+    function publicationHTML(item) {
+      return `
+        <article class="entry">
+          <h3 class="title">${item.title}</h3>
+          <p class="publine">${item.line}</p>
+        </article>
+      `;
+    }
+
+    function focusHTML(item) {
+      return `<div class="focus-item">${item}</div>`;
+    }
+
+    function splitExperience(items) {
+      const list = items || [];
+      return {
+        internships: list.filter(item => !/Infor/i.test(item.company)),
+        work: list.filter(item => /Infor/i.test(item.company))
+      };
+    }
+
+    function setLang(lang) {
+      const t = copy[lang];
+      document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+      document.querySelector('[data-lang="zh"]').textContent = "中文";
+      document.getElementById("label-email").textContent = t.emailLabel;
+      document.getElementById("name").textContent = t.name;
+      document.getElementById("lead").textContent = t.lead;
+      document.getElementById("nav-about").textContent = t.navAbout;
+      document.getElementById("nav-focus").textContent = t.navFocus;
+      document.getElementById("nav-projects").textContent = t.navProjects;
+      document.getElementById("nav-internships").textContent = t.navInternships;
+      document.getElementById("nav-publications").textContent = t.navPublications;
+      document.getElementById("about-title").textContent = t.aboutTitle;
+      document.getElementById("about-1").textContent = t.about1;
+      document.getElementById("about-2").textContent = t.about2;
+      document.getElementById("about-3").textContent = t.about3;
+      document.getElementById("focus-title").textContent = t.focusTitle;
+      document.getElementById("focus-intro").textContent = t.focusIntro;
+      document.getElementById("focus-list").innerHTML = t.focusItems.map(focusHTML).join("");
+      document.getElementById("projects-title").textContent = t.projectsTitle;
+      document.getElementById("projects-intro").textContent = t.projectsIntro;
+      document.getElementById("internships-title").textContent = t.internshipsTitle;
+      document.getElementById("publications-title").textContent = t.publicationsTitle;
+      document.getElementById("foot").textContent = t.foot;
+      document.getElementById("project-list").innerHTML = t.projects.map(item => entryHTML(item, lang)).join("");
+      document.getElementById("internship-list").innerHTML = t.internships.map(internshipHTML).join("");
+      document.getElementById("publication-list").innerHTML = t.publications.map(publicationHTML).join("");
+      document.querySelectorAll("[data-lang]").forEach(btn => btn.classList.toggle("active", btn.dataset.lang === lang));
+    }
+
+    document.querySelectorAll("[data-lang]").forEach(btn => {
+      btn.addEventListener("click", () => setLang(btn.dataset.lang));
+    });
+
+    function postRenderAdjustments(lang) {
+      const zhButton = document.querySelector('[data-lang="zh"]');
+      if (zhButton) {
+        zhButton.textContent = "中文";
+      }
+
+      const navWork = document.getElementById("nav-work");
+      const workTitle = document.getElementById("work-title");
+      if (navWork) {
+        navWork.textContent = lang === "zh" ? "工作经历" : "Work Experience";
+      }
+      if (workTitle) {
+        workTitle.textContent = lang === "zh" ? "工作经历" : "Work Experience";
+      }
+
+      const internshipList = document.getElementById("internship-list");
+      const workList = document.getElementById("work-list");
+      if (internshipList && workList) {
+        workList.innerHTML = "";
+        Array.from(internshipList.querySelectorAll(".entry")).forEach(entry => {
+          const title = entry.querySelector(".title");
+          if (title && /Infor/i.test(title.textContent)) {
+            workList.appendChild(entry);
+          }
+        });
+      }
+
+      const projectEntries = Array.from(document.querySelectorAll("#project-list .entry"));
+      for (const entry of projectEntries) {
+        const title = entry.querySelector(".title");
+        if (!title) {
+          continue;
+        }
+        if (/VLA Multi-Object Grasping/i.test(title.textContent)) {
+          const paragraphs = entry.querySelectorAll(".desc p");
+          if (paragraphs.length >= 2) {
+            paragraphs[0].textContent = `${paragraphs[0].textContent} ${paragraphs[1].textContent}`;
+            paragraphs[1].remove();
+          }
+          break;
+        }
+      }
+    }
+
+    const originalSetLang = setLang;
+    setLang = function(lang) {
+      originalSetLang(lang);
+      postRenderAdjustments(lang);
+    };
+
+    setLang("zh");
+  </script>
+</body>
+</html>

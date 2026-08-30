@@ -734,6 +734,10 @@
     };
 
     const projectLinks = {
+      "UCAG-P": [
+        { href: "https://arxiv.org/pdf/2608.26058", zh: "\u8bba\u6587\uff08arXiv\uff09", en: "Paper (arXiv)" },
+        { href: "https://public-bots.github.io/UCAG-P/", zh: "\u9879\u76ee\u4e3b\u9875", en: "Project" }
+      ],
       "ADCT": [
         { href: "https://ieeexplore.ieee.org/document/11576545", zh: "论文（IEEE Xplore）", en: "Paper (IEEE Xplore)" },
         { href: "https://github.com/wbwwt/ADCT", zh: "代码（GitHub）", en: "Code (GitHub)" }
@@ -762,11 +766,13 @@
     const projectTitleOverrides = {
       zh: {
         "RTC-Enabled Long-Horizon Bimanual Bin Manipulation": "双臂料箱长时连续操作：基于 RTC 与异步推理的 VLA 部署优化",
-        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "双臂穿扎带自主恢复：基于价值模型的 VLA 后训练",
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "双臂穿扎带自主恢复：基于 RECAP 的 VLA+RL 后训练",
         "VLA Multi-Object Grasping": "多物体语言条件抓取：基于区域-语言对齐的 VLA 泛化优化",
         "Post-Training for Robotics Challenge": "RSS 2026 挑战赛真实双臂操作"
       },
-      en: {}
+      en: {
+        "Value-Guided Offline RL Post-Training for Cable-Tie Threading": "Bimanual Cable-Tie Recovery: RECAP-Based VLA+RL Post-Training"
+      }
     };
 
     const projectImageOverrides = {
